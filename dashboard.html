@@ -1,0 +1,3272 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="pageTitle">زندگی‌یار | داشبورد شخصی</title>
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+  </head>
+  <body>
+    <!-- ═══════════════════════════════════════════
+     SIDEBAR
+═══════════════════════════════════════════ -->
+    <aside class="sidebar" id="sidebar">
+      <!-- لوگو / برند -->
+      <div class="sidebar-brand">
+        <div class="brand-logo">
+          <i class="fa-solid fa-calendar-check"></i>
+        </div>
+        <span class="brand-name" id="sidebarBrandName">زندگی‌یار</span>
+      </div>
+
+      <!-- پروفایل کاربر -->
+      <div class="sidebar-profile" id="sidebarProfileBtn" title="رفتن به تنظیمات">
+        <div class="profile-avatar">
+          <img
+            id="sidebarAvatarImg"
+            class="zoomable-avatar"
+            src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23a78bfa'/%3E%3C/svg%3E"
+            alt="پروفایل"
+          />
+          <span class="avatar-status online"></span>
+        </div>
+        <div class="profile-info">
+          <strong class="profile-name" id="sidebarProfileName">کاربر مهمان</strong>
+          <span class="profile-role" id="sidebarProfileRole">مدیریت زمان شخصی</span>
+        </div>
+      </div>
+
+      <!-- منوی ناوبری -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">داشبورد</div>
+        <ul class="nav-list">
+          <li class="nav-item active" data-comp="comp-dashboard-home">
+            <i class="fa-solid fa-house"></i>
+            <span>خانه</span>
+          </li>
+          <li class="nav-item" data-comp="comp-daily">
+            <i class="fa-solid fa-list-check"></i>
+            <span>برنامه روزانه</span>
+            <span class="nav-badge" id="badge-today">0</span>
+          </li>
+          <li class="nav-item" data-comp="comp-activities">
+            <i class="fa-solid fa-person-running"></i>
+            <span>فعالیت‌ها</span>
+          </li>
+        </ul>
+
+        <div class="nav-section-label">سلامت و رفاه</div>
+        <ul class="nav-list">
+          <li class="nav-item" data-comp="comp-health">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <span>سلامت</span>
+          </li>
+          <li class="nav-item" data-comp="comp-sport">
+            <i class="fa-solid fa-dumbbell"></i>
+            <span>ورزش و یوگا</span>
+          </li>
+          <li class="nav-item" data-comp="comp-food">
+            <i class="fa-solid fa-utensils"></i>
+            <span>تغذیه</span>
+          </li>
+          <li class="nav-item" data-comp="comp-medicine">
+            <i class="fa-solid fa-pills"></i>
+            <span>دارو و دکتر</span>
+          </li>
+        </ul>
+
+        <div class="nav-section-label">برنامه‌ریزی</div>
+        <ul class="nav-list">
+          <li class="nav-item" data-comp="comp-reminders">
+            <i class="fa-solid fa-bell"></i>
+            <span>یادآوری‌ها</span>
+            <span class="nav-badge urgent" id="badge-remind">0</span>
+          </li>
+          <li class="nav-item" data-comp="comp-calendar">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>دفتر زندگی و خاطرات</span>
+          </li>
+          <li class="nav-item" data-comp="comp-family">
+            <i class="fa-solid fa-people-group"></i>
+            <span>خانواده</span>
+          </li>
+          <li class="nav-item" data-comp="comp-leisure">
+            <i class="fa-solid fa-gamepad"></i>
+            <span>تفریح</span>
+          </li>
+        </ul>
+
+        <div class="nav-section-label">رسانه</div>
+        <ul class="nav-list">
+          <li class="nav-item" data-comp="comp-gallery">
+            <i class="fa-solid fa-images"></i>
+            <span>گالری تصاویر</span>
+          </li>
+          <li class="nav-item" data-comp="comp-documents">
+            <i class="fa-solid fa-folder-open"></i>
+            <span>اسناد و فایل‌ها</span>
+          </li>
+        </ul>
+
+        <div class="nav-section-label">مالی</div>
+        <ul class="nav-list">
+          <li class="nav-item" data-comp="comp-finance">
+            <i class="fa-solid fa-wallet"></i>
+            <span>هزینه‌ها</span>
+          </li>
+        </ul>
+
+        <div class="nav-section-label">گزارش‌ها</div>
+        <ul class="nav-list">
+          <li class="nav-item" data-comp="comp-events">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>رویدادها و بازخورد</span>
+          </li>
+        </ul>
+
+        <div class="nav-section-label">تنظیمات</div>
+        <ul class="nav-list">
+          <li class="nav-item" data-comp="comp-settings">
+            <i class="fa-solid fa-gear"></i>
+            <span>تنظیمات</span>
+          </li>
+          <li class="nav-item" id="btn-export">
+            <i class="fa-solid fa-file-export"></i>
+            <span>اکسپورت داده</span>
+          </li>
+          <li class="nav-item" id="btn-import-wrap">
+            <i class="fa-solid fa-file-import"></i>
+            <span>ایمپورت داده</span>
+            <input
+              type="file"
+              id="btn-import"
+              accept=".json"
+              style="display: none"
+            />
+          </li>
+        </ul>
+      </nav>
+
+      <!-- پایین سایدبار -->
+      <div class="sidebar-footer">
+        <span id="sidebar-clock" class="sidebar-clock"></span>
+        <span id="sidebar-date" class="sidebar-date"></span>
+      </div>
+    </aside>
+
+    <!-- ═══════════════════════════════════════════
+     MAIN WRAPPER
+═══════════════════════════════════════════ -->
+    <div class="main-wrapper" id="mainWrapper">
+      <!-- ─── TOPBAR ─── -->
+      <header class="topbar">
+        <div class="topbar-right">
+          <button class="topbar-menu-btn" id="mobileMenuBtn">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <button
+            class="sidebar-toggle"
+            id="sidebarToggle"
+            type="button"
+            title="جمع کردن منو"
+            aria-label="جمع کردن منو"
+            aria-expanded="true"
+          >
+            <!-- آیکن SVG اختصاصی (نه فونت‌اوسام): فونت‌اوسام با JS تگ <i> رو
+                 به <svg> تبدیل می‌کنه و تغییر کلاس روی <i> دیگه اثری نداشت.
+                 منوی ما سمت راسته؛ بازه = پنل پرشده + فلش به راست (جمع شو)،
+                 بسته = پنل باریک + فلش به چپ (باز شو) -->
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="4" width="18" height="16" rx="3.5"></rect>
+              <g class="sb-when-open">
+                <path
+                  d="M14 4h3.5A3.5 3.5 0 0 1 21 7.5v9a3.5 3.5 0 0 1-3.5 3.5H14z"
+                  fill="currentColor"
+                  fill-opacity="0.16"
+                  stroke="none"
+                ></path>
+                <path d="M14 4v16"></path>
+                <path d="m16.6 9.6 2.4 2.4-2.4 2.4"></path>
+              </g>
+              <g class="sb-when-closed">
+                <path d="M18.5 4v16"></path>
+                <path d="m13 9.6-2.4 2.4 2.4 2.4"></path>
+              </g>
+            </svg>
+          </button>
+          <div class="topbar-title" id="topbarTitle">داشبورد</div>
+        </div>
+        <!-- ─── پخش‌کننده‌ی موزیک (وسط نوار بالا) ─── -->
+        <div class="topbar-center">
+          <div class="mp" id="musicPlayer">
+            <audio id="mpAudio" preload="metadata"></audio>
+            <div class="mp-bar">
+              <!-- دکمه‌های پخش عمداً چپ‌به‌راست‌ان (قبلی | پخش | بعدی) تا جهت
+                   آیکن‌ها با ترتیبشون بخونه، مثل همه‌ی پخش‌کننده‌ها -->
+              <div class="mp-transport" dir="ltr">
+                <button class="mp-btn mp-hide-sm" id="mpPrev" type="button" title="قبلی" aria-label="آهنگ قبلی">
+                  <i class="fa-solid fa-backward-step"></i>
+                </button>
+                <button class="mp-btn mp-play" id="mpPlay" type="button" title="پخش" aria-label="پخش / توقف">
+                  <i class="fa-solid fa-play mp-ic-play"></i>
+                  <i class="fa-solid fa-pause mp-ic-pause"></i>
+                </button>
+                <button class="mp-btn mp-hide-sm" id="mpNext" type="button" title="بعدی" aria-label="آهنگ بعدی">
+                  <i class="fa-solid fa-forward-step"></i>
+                </button>
+              </div>
+              <button class="mp-now" id="mpNow" type="button" title="باز کردن پلی‌لیست">
+                <span class="mp-title" id="mpTitle">موزیکی انتخاب نشده</span>
+                <span class="mp-time" id="mpTime" dir="ltr">0:00</span>
+              </button>
+              <button class="mp-btn" id="mpListBtn" type="button" title="پلی‌لیست" aria-label="پلی‌لیست موزیک" aria-expanded="false">
+                <i class="fa-solid fa-music"></i>
+              </button>
+              <div class="mp-progress" aria-hidden="true"><span id="mpMiniFill"></span></div>
+            </div>
+
+            <div class="mp-panel hidden" id="mpPanel" role="dialog" aria-label="پخش‌کننده‌ی موزیک">
+              <div class="mp-panel-head">
+                <strong>پخش‌کننده‌ی موزیک</strong>
+                <button class="modal-close" id="mpPanelClose" type="button" aria-label="بستن">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+
+              <div class="mp-now-card">
+                <div class="mp-cover"><i class="fa-solid fa-compact-disc"></i></div>
+                <div class="mp-now-info">
+                  <div class="mp-now-title" id="mpPanelTitle">موزیکی انتخاب نشده</div>
+                  <div class="mp-now-sub" id="mpPanelSub">از پایین یه فایل mp3 اضافه کن</div>
+                </div>
+              </div>
+
+              <div class="mp-seek">
+                <span id="mpCur" dir="ltr">0:00</span>
+                <input type="range" id="mpSeek" min="0" max="1000" value="0" step="1" aria-label="جلو/عقب بردن آهنگ" />
+                <span id="mpDur" dir="ltr">0:00</span>
+              </div>
+
+              <div class="mp-controls">
+                <button class="mp-ctl" id="mpShuffle" type="button" title="پخش تصادفی" aria-pressed="false">
+                  <i class="fa-solid fa-shuffle"></i>
+                </button>
+                <button class="mp-ctl" id="mpPrev2" type="button" title="قبلی"><i class="fa-solid fa-backward-step"></i></button>
+                <button class="mp-ctl mp-ctl-play" id="mpPlay2" type="button" title="پخش">
+                  <i class="fa-solid fa-play mp-ic-play"></i>
+                  <i class="fa-solid fa-pause mp-ic-pause"></i>
+                </button>
+                <button class="mp-ctl" id="mpNext2" type="button" title="بعدی"><i class="fa-solid fa-forward-step"></i></button>
+                <button class="mp-ctl" id="mpRepeat" type="button" title="تکرار: خاموش" data-mode="off">
+                  <i class="fa-solid fa-repeat"></i><b class="mp-repeat-one">۱</b>
+                </button>
+              </div>
+
+              <div class="mp-volume">
+                <button class="mp-ctl mp-ctl-sm" id="mpMute" type="button" title="بی‌صدا" aria-label="بی‌صدا">
+                  <i class="fa-solid fa-volume-high mp-ic-vol"></i>
+                  <i class="fa-solid fa-volume-xmark mp-ic-mute"></i>
+                </button>
+                <input type="range" id="mpVolume" min="0" max="100" value="80" step="1" aria-label="میزان صدا" />
+              </div>
+
+              <div class="mp-add">
+                <label class="btn-secondary mp-add-btn" title="فقط همین بار پخش می‌شه و جایی ذخیره نمی‌شه">
+                  <i class="fa-solid fa-folder-open"></i> پخش از دیسک
+                  <input type="file" id="mpFileTemp" accept="audio/*,.mp3" multiple hidden />
+                </label>
+                <label class="btn-primary mp-add-btn" title="داخل مرورگر ذخیره می‌شه و دفعه‌ی بعد هم هست">
+                  <i class="fa-solid fa-floppy-disk"></i> ذخیره در کتابخانه
+                  <input type="file" id="mpFileSave" accept="audio/*,.mp3" multiple hidden />
+                </label>
+              </div>
+
+              <ul class="mp-list" id="mpList"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="topbar-left">
+          <!-- جستجو -->
+          <div class="topbar-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="جستجو..." id="globalSearch" />
+            <div class="dropdown-menu search-dropdown hidden" id="searchDropdown"></div>
+          </div>
+          <!-- اعلان‌ها -->
+          <div class="topbar-icon-btn" id="notifBtn" title="اعلان‌ها">
+            <i class="fa-solid fa-bell"></i>
+            <span class="topbar-badge" id="notifCount">0</span>
+          </div>
+          <div class="dropdown-menu notif-dropdown hidden" id="notifDropdown">
+            <div class="dropdown-header">
+              <span>یادآوری‌ها و کارهای مهم</span>
+            </div>
+            <div class="notif-list" id="notifList"></div>
+          </div>
+
+          <!-- پروفایل -->
+          <div class="topbar-avatar" id="topbarAvatar">
+            <img
+              id="topbarAvatarImg"
+              class="zoomable-avatar"
+              src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23a78bfa'/%3E%3C/svg%3E"
+              alt="پروفایل"
+            />
+          </div>
+          <div class="dropdown-menu profile-dropdown hidden" id="profileDropdown">
+            <button class="dropdown-item" id="ddProfile">
+              <i class="fa-solid fa-user"></i> پروفایل
+            </button>
+            <button class="dropdown-item" id="ddPassword">
+              <i class="fa-solid fa-key"></i>
+              <span id="ddPasswordLabel">تنظیم رمز عبور</span>
+            </button>
+            <button class="dropdown-item danger" id="ddLogout">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> خروج
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- ─── CONTENT AREA ─── -->
+      <main class="content-area" id="contentArea">
+        <!-- ══════════════════════════════════════
+         کامپوننت: خانه / داشبورد اصلی
+    ══════════════════════════════════════ -->
+        <section class="comp-page active" id="comp-dashboard-home">
+          <!-- خوش‌آمد -->
+          <div class="welcome-banner">
+            <div class="welcome-text">
+              <h1 id="welcomeMsg">سلام آنا 👋</h1>
+              <p id="welcomeDate">در حال بارگذاری...</p>
+            </div>
+            <div class="welcome-quote" id="dailyQuote">
+              «هر روز یک فرصت تازه است.»
+            </div>
+          </div>
+
+          <!-- کارت‌های آماری -->
+          <div class="stats-grid">
+            <div class="stat-card purple">
+              <div class="stat-icon">
+                <i class="fa-solid fa-list-check"></i>
+              </div>
+              <div class="stat-body">
+                <span class="stat-value" id="stat-tasks-done">0</span>
+                <span class="stat-label">وظایف امروز انجام‌شده</span>
+              </div>
+              <div class="stat-footer">
+                از <span id="stat-tasks-total">0</span> وظیفه
+              </div>
+            </div>
+
+            <div class="stat-card teal">
+              <div class="stat-icon">
+                <i class="fa-solid fa-person-running"></i>
+              </div>
+              <div class="stat-body">
+                <span class="stat-value" id="stat-exercise">۰ دقیقه</span>
+                <span class="stat-label">ورزش امروز</span>
+              </div>
+              <div class="stat-footer" id="stat-exercise-type">—</div>
+            </div>
+
+            <div class="stat-card orange">
+              <div class="stat-icon"><i class="fa-solid fa-droplet"></i></div>
+              <div class="stat-body">
+                <span class="stat-value" id="stat-water">0</span>
+                <span class="stat-label">لیوان آب امروز</span>
+              </div>
+              <div class="stat-footer">هدف: ۸ لیوان</div>
+            </div>
+
+            <div class="stat-card blue">
+              <div class="stat-icon"><i class="fa-solid fa-wallet"></i></div>
+              <div class="stat-body">
+                <span class="stat-value" id="stat-expense">0</span>
+                <span class="stat-label">هزینه این هفته</span>
+              </div>
+              <div class="stat-footer">تومان</div>
+            </div>
+
+            <div class="stat-card green">
+              <div class="stat-icon"><i class="fa-solid fa-pills"></i></div>
+              <div class="stat-body">
+                <span class="stat-value" id="stat-medicine">0 / 0</span>
+                <span class="stat-label">دارو امروز</span>
+              </div>
+              <div class="stat-footer">مصرف‌شده / کل</div>
+            </div>
+
+            <div class="stat-card pink">
+              <div class="stat-icon"><i class="fa-solid fa-moon"></i></div>
+              <div class="stat-body">
+                <span class="stat-value" id="stat-sleep">—</span>
+                <span class="stat-label">خواب دیشب</span>
+              </div>
+              <div class="stat-footer">ساعت</div>
+            </div>
+
+            <div class="stat-card red">
+              <div class="stat-icon">
+                <i class="fa-solid fa-people-roof"></i>
+              </div>
+              <div class="stat-body">
+                <span class="stat-value" id="stat-family">0</span>
+                <span class="stat-label">رویداد خانوادگی این ماه</span>
+              </div>
+              <div class="stat-footer" id="stat-family-next">—</div>
+            </div>
+          </div>
+          <!-- /stats-grid -->
+
+          <!-- ردیف نمودار هفتگی — تمام‌عرض -->
+          <div class="charts-row charts-row-full">
+            <!-- نمودار فعالیت هفتگی -->
+            <div class="chart-card wide">
+              <div class="chart-card-header">
+                <h3 id="chartWeeklyTitle">فعالیت‌های هفته جاری</h3>
+                <div class="chart-tabs" id="chartWeeklyTabs">
+                  <button class="chart-tab active" data-range="week">
+                    هفتگی
+                  </button>
+                  <button class="chart-tab" data-range="month">ماهانه</button>
+                </div>
+              </div>
+              <div class="chart-wrap">
+                <canvas id="chartWeekly"></canvas>
+              </div>
+            </div>
+
+          </div>
+          <!-- /charts-row -->
+
+          <!-- ردیف ویجت‌ها: توزیع فعالیت‌ها + آب‌وهوا + قیمت بازار -->
+          <div class="home-widgets-row">
+            <!-- نمودار دایره‌ای دسته‌بندی -->
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <h3>توزیع فعالیت‌ها</h3>
+              </div>
+              <div class="chart-wrap">
+                <canvas id="chartDonut"></canvas>
+              </div>
+              <div class="chart-legend" id="donutLegend"></div>
+            </div>
+
+            <!-- آب‌وهوا -->
+            <div class="widget-card wx-card" id="weatherCard">
+              <div class="widget-header">
+                <h3><i class="fa-solid fa-cloud-sun"></i> آب‌وهوا</h3>
+                <button
+                  class="icon-btn icon-btn-sm"
+                  id="weatherRefresh"
+                  type="button"
+                  title="بروزرسانی آب‌وهوا"
+                  aria-label="بروزرسانی آب‌وهوا"
+                >
+                  <i class="fa-solid fa-arrows-rotate"></i>
+                </button>
+              </div>
+              <div class="wx-body" id="weatherBody"></div>
+            </div>
+
+            <!-- نرخ ارز، طلا، سکه، رمزارز -->
+            <div class="widget-card rates-card" id="ratesCard">
+              <div class="widget-header">
+                <h3><i class="fa-solid fa-coins"></i> قیمت بازار</h3>
+                <div class="rates-head-tools">
+                  <span class="rates-updated" id="ratesUpdated"></span>
+                  <button
+                    class="icon-btn icon-btn-sm"
+                    id="ratesRefresh"
+                    type="button"
+                    title="بروزرسانی قیمت‌ها"
+                    aria-label="بروزرسانی قیمت‌ها"
+                  >
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="rates-tabs" id="ratesTabs" role="tablist">
+                <button type="button" class="rates-tab active" data-group="currency" role="tab">ارز</button>
+                <button type="button" class="rates-tab" data-group="gold" role="tab">طلا</button>
+                <button type="button" class="rates-tab" data-group="coin" role="tab">سکه</button>
+                <button type="button" class="rates-tab" data-group="crypto" role="tab">رمزارز</button>
+              </div>
+              <div class="rates-body" id="ratesBody"></div>
+              <div class="rates-foot" id="ratesFoot"></div>
+            </div>
+          </div>
+          <!-- /home-widgets-row -->
+
+          <!-- ردیف پایین -->
+          <div class="bottom-row">
+            <!-- یادآوری‌های امروز -->
+            <div class="widget-card">
+              <div class="widget-header">
+                <h3><i class="fa-solid fa-bell"></i> یادآوری‌های امروز</h3>
+                <button class="btn-sm" data-comp="comp-reminders">همه</button>
+              </div>
+              <ul class="reminder-list" id="homeReminderList">
+                <li class="empty-state">یادآوری‌ای ثبت نشده</li>
+              </ul>
+            </div>
+
+            <!-- فعالیت‌های اخیر -->
+            <div class="widget-card">
+              <div class="widget-header">
+                <h3>
+                  <i class="fa-solid fa-clock-rotate-left"></i> آخرین فعالیت‌ها
+                </h3>
+              </div>
+              <ul class="activity-feed" id="homeActivityFeed">
+                <li class="empty-state">فعالیتی ثبت نشده</li>
+              </ul>
+            </div>
+
+            <!-- هزینه‌های اخیر -->
+            <div class="widget-card">
+              <div class="widget-header">
+                <h3><i class="fa-solid fa-receipt"></i> هزینه‌های اخیر</h3>
+                <button class="btn-sm" data-comp="comp-finance">همه</button>
+              </div>
+              <ul class="finance-list" id="homeFinanceList">
+                <li class="empty-state">هزینه‌ای ثبت نشده</li>
+              </ul>
+            </div>
+          </div>
+          <!-- /bottom-row -->
+        </section>
+        <!-- /comp-dashboard-home -->
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: برنامه روزانه
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-daily">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-list-check"></i> برنامه روزانه</h2>
+            <button class="btn-primary" id="btn-add-task">
+              <i class="fa-solid fa-plus"></i> افزودن وظیفه
+            </button>
+          </div>
+
+          <!-- فیلتر روز: سه سطر — دیروز / تاریخ انتخاب‌شده / فردا -->
+          <div class="day-nav-stack">
+            <button class="day-nav-row" id="dailyPrev">
+              <i class="fa-solid fa-chevron-right"></i>
+              <span class="day-nav-text">دیروز</span>
+            </button>
+            <div class="day-nav-row day-nav-current">
+              <span class="date-nav-label" id="dailyDateLabel">امروز</span>
+              <button class="btn-sm" id="dailyToday">برو به امروز</button>
+            </div>
+            <button class="day-nav-row" id="dailyNext">
+              <span class="day-nav-text">فردا</span>
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+          </div>
+
+          <!-- نمای ماهانه — همیشه باز، برای دیدن/ثبت برنامه‌ی هر روزی -->
+          <div class="mmc-panel big" id="dailyCalPanel">
+            <div class="mmc-header">
+              <button class="icon-btn" id="dailyCalPrev">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+              <span id="dailyCalLabel">—</span>
+              <button class="icon-btn" id="dailyCalNext">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+            </div>
+            <div class="mmc-weekdays">
+              <span>شنبه</span><span>یک‌شنبه</span><span>دوشنبه</span
+              ><span>سه‌شنبه</span><span>چهارشنبه</span><span>پنج‌شنبه</span
+              ><span>جمعه</span>
+            </div>
+            <div class="mmc-grid big" id="dailyCalDays"></div>
+          </div>
+
+          <!-- ردیف زمانی روز (جدول وظایف) -->
+          <div class="timeline-wrap table-card">
+            <div id="dailyTimeline">
+              <!-- آیتم‌ها از JS رندر می‌شن -->
+              <div class="timeline-empty">
+                هنوز فعالیتی برای این روز ثبت نشده.
+              </div>
+            </div>
+          </div>
+
+          <!-- فرم افزودن وظیفه -->
+          <div class="modal-overlay hidden" id="modalTask">
+            <div class="modal-box">
+              <div class="modal-header">
+                <h3 id="modalTaskTitle">افزودن وظیفه</h3>
+                <button class="modal-close" id="modalTaskClose">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label>عنوان</label>
+                  <input
+                    type="text"
+                    id="taskTitle"
+                    placeholder="عنوان فعالیت..."
+                  />
+                </div>
+                <div class="form-group date-field-group">
+                  <label>تاریخ</label>
+                  <div class="date-picker-field">
+                    <input
+                      type="text"
+                      id="taskDateDisplay"
+                      readonly
+                      placeholder="انتخاب تاریخ"
+                    />
+                    <button
+                      type="button"
+                      class="icon-btn"
+                      id="taskDateToggle"
+                    >
+                      <i class="fa-solid fa-calendar-days"></i>
+                    </button>
+                    <input type="hidden" id="taskDate" />
+                  </div>
+                  <div class="mmc-panel compact hidden" id="taskDateCalPanel">
+                    <div class="mmc-header">
+                      <button
+                        type="button"
+                        class="icon-btn"
+                        id="taskDateCalPrev"
+                      >
+                        <i class="fa-solid fa-chevron-right"></i>
+                      </button>
+                      <span id="taskDateCalLabel">—</span>
+                      <button
+                        type="button"
+                        class="icon-btn"
+                        id="taskDateCalNext"
+                      >
+                        <i class="fa-solid fa-chevron-left"></i>
+                      </button>
+                    </div>
+                    <div class="mmc-weekdays">
+                      <span>ش</span><span>ی</span><span>د</span
+                      ><span>س</span><span>چ</span><span>پ</span
+                      ><span>ج</span>
+                    </div>
+                    <div class="mmc-grid" id="taskDateCalDays"></div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>دسته‌بندی</label>
+                    <select id="taskCategory">
+                      <option value="مطالعه">📚 مطالعه</option>
+                      <option value="ورزش">🏃 ورزش</option>
+                      <option value="یوگا">🧘 یوگا</option>
+                      <option value="غذا">🍽️ غذا</option>
+                      <option value="دارو">💊 دارو</option>
+                      <option value="قرار">📅 قرار</option>
+                      <option value="خانواده">👨‍👩‍👧 خانواده</option>
+                      <option value="تفریح">🎮 تفریح</option>
+                      <option value="کار">💼 کار</option>
+                      <option value="سایر">📌 سایر</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>اولویت</label>
+                    <select id="taskPriority">
+                      <option value="normal">معمولی</option>
+                      <option value="high">بالا</option>
+                      <option value="urgent">فوری</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>ساعت شروع</label>
+                    <input type="time" id="taskStart" />
+                  </div>
+                  <div class="form-group">
+                    <label>ساعت پایان</label>
+                    <input type="time" id="taskEnd" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>تکرار</label>
+                  <select id="taskRepeat">
+                    <option value="none">بدون تکرار</option>
+                    <option value="daily">روزانه</option>
+                    <option value="weekly">هفتگی</option>
+                    <option value="monthly">ماهانه</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>یادداشت</label>
+                  <textarea
+                    id="taskNote"
+                    rows="2"
+                    placeholder="یادداشت اختیاری..."
+                  ></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn-secondary" id="modalTaskCancel">
+                  انصراف
+                </button>
+                <button class="btn-primary" id="modalTaskSave">ذخیره</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- /comp-daily -->
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: فعالیت‌ها
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-activities">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-person-running"></i> فعالیت‌ها</h2>
+            <button class="btn-primary" id="btn-add-activity">
+              <i class="fa-solid fa-plus"></i> ثبت فعالیت
+            </button>
+          </div>
+
+          <!-- نمودار هفتگی فعالیت -->
+          <div class="chart-card full-width">
+            <div class="chart-card-header">
+              <h3 id="activitiesChartTitle">مدت فعالیت‌ها</h3>
+              <div class="chart-tabs" id="activitiesRangeTabs">
+                <button class="chart-tab active" data-mode="calendar">
+                  این هفته (شنبه تا جمعه)
+                </button>
+                <button class="chart-tab" data-mode="rolling">
+                  ۷ روز آینده از امروز
+                </button>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="chartActivities"></canvas>
+            </div>
+          </div>
+
+          <!-- گرید فعالیت‌های همین بازه -->
+          <div class="table-card">
+            <div class="table-toolbar">
+              <input
+                type="text"
+                class="table-search"
+                placeholder="جستجو در فعالیت‌ها..."
+                id="activitySearch"
+              />
+              <select id="activityFilter" class="table-filter">
+                <option value="">همه دسته‌ها</option>
+                <option value="ورزش">ورزش</option>
+                <option value="یوگا">یوگا</option>
+                <option value="مطالعه">مطالعه</option>
+                <option value="تفریح">تفریح</option>
+              </select>
+            </div>
+            <div id="activitiesGrid">
+              <div class="empty-state">فعالیتی ثبت نشده</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- فرم افزودن فعالیت -->
+        <div class="modal-overlay hidden" id="modalActivity">
+          <div class="modal-box">
+            <div class="modal-header">
+              <h3 id="modalActivityTitle">افزودن فعالیت</h3>
+              <button class="modal-close" id="modalActivityClose">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+
+            <div class="modal-body">
+              <div class="form-group">
+                <label>عنوان فعالیت</label>
+                <input
+                  type="text"
+                  id="activityTitle"
+                  placeholder="مثلاً: کمک به همسایه..."
+                />
+              </div>
+
+              <div class="form-group">
+                <label>برای کدوم روز؟</label>
+                <div class="day-chip-row" id="activityDayChips"></div>
+                <input type="hidden" id="activityDate" />
+                <span class="onboarding-hint"
+                  >فقط توی همین بازه (امروز تا پایان بازه‌ی انتخابی بالای
+                  صفحه) می‌تونی فعالیت ثبت کنی.</span
+                >
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>نوع فعالیت</label>
+                  <select id="activityCategory">
+                    <option value="تعامل">🤝 تعامل</option>
+                    <option value="کمک">🛠️ کمک</option>
+                    <option value="مطالعه">📚 مطالعه</option>
+                    <option value="ورزش">🏃 ورزش</option>
+                    <option value="تفریح">🎮 تفریح</option>
+                    <option value="کار">💼 کار</option>
+                    <option value="سایر">📌 سایر</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>مدت (دقیقه)</label>
+                  <input
+                    type="number"
+                    id="activityDuration"
+                    placeholder="مثلاً: ۳۰"
+                    min="1"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>یادداشت</label>
+                <textarea
+                  id="activityNote"
+                  rows="2"
+                  placeholder="یادداشت اختیاری..."
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button class="btn-secondary" id="modalActivityCancel">
+                انصراف
+              </button>
+              <button class="btn-primary" id="modalActivitySave">ثبت</button>
+            </div>
+          </div>
+        </div>
+        <!-- /comp-activities -->
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: سلامت
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-health">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-heart-pulse"></i> سلامت</h2>
+          </div>
+
+          <div class="health-grid">
+            <!-- آب -->
+            <div class="health-card water">
+              <div class="health-card-header">
+                <i
+                  class="fa-solid fa-droplet"
+                  style="color: var(--color-info)"
+                ></i>
+                <h3>مصرف آب امروز</h3>
+              </div>
+              <div class="water-tracker">
+                <div class="water-glasses" id="waterGlasses">
+                  <!-- 8 لیوان -->
+                </div>
+                <div class="water-count">
+                  <span id="waterCount">0</span> / 8 لیوان
+                </div>
+              </div>
+              <div class="health-card-actions">
+                <button class="btn-water-add" id="btn-add-water">
+                  <i class="fa-solid fa-plus"></i> اضافه کردن لیوان
+                </button>
+                <button class="btn-secondary" id="btn-reset-water">ریست</button>
+              </div>
+            </div>
+
+            <!-- حال عمومی -->
+            <div class="health-card mood">
+              <div class="health-card-header">
+                <i
+                  class="fa-solid fa-face-smile"
+                  style="color: var(--color-warning)"
+                ></i>
+                <h3>حال عمومی امروز</h3>
+              </div>
+              <div class="mood-picker" id="moodPicker">
+                <button class="mood-btn active" data-mood="5" title="عالی">
+                  <span class="mood-emoji">😄</span>
+                  <span class="mood-label">عالی</span>
+                </button>
+                <button class="mood-btn" data-mood="4" title="خوب">
+                  <span class="mood-emoji">🙂</span>
+                  <span class="mood-label">خوب</span>
+                </button>
+                <button class="mood-btn" data-mood="3" title="معمولی">
+                  <span class="mood-emoji">😐</span>
+                  <span class="mood-label">معمولی</span>
+                </button>
+                <button class="mood-btn" data-mood="2" title="بد">
+                  <span class="mood-emoji">😕</span>
+                  <span class="mood-label">بد</span>
+                </button>
+                <button class="mood-btn" data-mood="1" title="خیلی بد">
+                  <span class="mood-emoji">😞</span>
+                  <span class="mood-label">خیلی بد</span>
+                </button>
+              </div>
+              <textarea
+                id="moodNote"
+                rows="2"
+                placeholder="چرا این حس رو داری؟ (اختیاری)"
+              ></textarea>
+              <button class="btn-primary" id="btn-save-mood">
+                <i class="fa-solid fa-check"></i> ذخیره حال امروز
+              </button>
+
+              <div class="mood-history-wrap">
+                <span class="mood-history-title">۷ روز اخیر</span>
+                <div class="mood-history" id="moodHistory"></div>
+              </div>
+            </div>
+
+            <!-- خواب -->
+            <div class="health-card sleep full-row">
+              <div class="health-card-header">
+                <i
+                  class="fa-solid fa-moon"
+                  style="color: var(--color-purple)"
+                ></i>
+                <h3>خواب</h3>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>ساعت خواب</label>
+                  <input type="time" id="sleepStart" />
+                </div>
+                <div class="form-group">
+                  <label>ساعت بیداری</label>
+                  <input type="time" id="sleepEnd" />
+                </div>
+              </div>
+              <div class="sleep-result" id="sleepResult">—</div>
+              <button class="btn-primary" id="btn-save-sleep">
+                ذخیره خواب
+              </button>
+              <div class="chart-wrap" style="height: 160px">
+                <canvas id="chartSleep"></canvas>
+              </div>
+            </div>
+
+            <!-- وزن -->
+            <div class="health-card weight full-row">
+              <div class="health-card-header">
+                <i
+                  class="fa-solid fa-weight-scale"
+                  style="color: var(--color-success)"
+                ></i>
+                <h3>وزن</h3>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>وزن امروز (کیلوگرم)</label>
+                  <input
+                    type="number"
+                    id="weightInput"
+                    placeholder="مثلاً 62.5"
+                    step="0.1"
+                  />
+                </div>
+              </div>
+              <button class="btn-primary" id="btn-save-weight">ثبت وزن</button>
+              <div class="chart-wrap" style="height: 160px">
+                <canvas id="chartWeight"></canvas>
+              </div>
+            </div>
+          </div>
+          <!-- /health-grid -->
+        </section>
+        <!-- /comp-health -->
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: ورزش و یوگا
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-sport">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-dumbbell"></i> ورزش و یوگا</h2>
+            <button class="btn-primary" id="btn-add-sport">
+              <i class="fa-solid fa-plus"></i> ثبت جلسه
+            </button>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card purple">
+              <div class="stat-icon"><i class="fa-solid fa-fire"></i></div>
+              <div class="stat-body">
+                <span class="stat-value" id="sportWeekCount">0</span>
+                <span class="stat-label">جلسه این هفته</span>
+              </div>
+            </div>
+            <div class="stat-card teal">
+              <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+              <div class="stat-body">
+                <span class="stat-value" id="sportWeekMins">0 دقیقه</span>
+                <span class="stat-label">مجموع زمان</span>
+              </div>
+            </div>
+            <div class="stat-card orange">
+              <div class="stat-icon">
+                <i class="fa-solid fa-calendar-check"></i>
+              </div>
+              <div class="stat-body">
+                <span class="stat-value" id="sportStreak">0 روز</span>
+                <span class="stat-label">استریک متوالی</span>
+              </div>
+            </div>
+            <div class="stat-card pink">
+              <div class="stat-icon"><i class="fa-solid fa-wallet"></i></div>
+              <div class="stat-body">
+                <span class="stat-value" id="sportMonthCost">—</span>
+                <span class="stat-label">هزینه سربار این ماه</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- نمودار -->
+          <div class="chart-card full-width">
+            <div class="chart-card-header">
+              <h3>مدت ورزش — ۳۰ روز اخیر</h3>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="chartSport"></canvas>
+            </div>
+          </div>
+
+          <!-- لیست جلسات -->
+          <div class="table-card">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>نوع</th>
+                  <th>تاریخ</th>
+                  <th>مدت</th>
+                  <th>شرح</th>
+                  <th>هزینه سربار</th>
+                  <th>عملیات</th>
+                </tr>
+              </thead>
+              <tbody id="sportTableBody">
+                <tr>
+                  <td colspan="6" class="empty-state">جلسه‌ای ثبت نشده</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- مودال ثبت جلسه ورزشی -->
+          <div class="modal-overlay hidden" id="modalSport">
+            <div class="modal-box">
+              <div class="modal-header">
+                <h3>ثبت جلسه ورزشی</h3>
+                <button class="modal-close" id="modalSportClose">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>نوع ورزش</label>
+                    <select id="sportType">
+                      <option value="یوگا">🧘 یوگا</option>
+                      <option value="پیاده‌روی">🚶 پیاده‌روی</option>
+                      <option value="دویدن">🏃 دویدن</option>
+                      <option value="باشگاه">🏋️ باشگاه</option>
+                      <option value="شنا">🏊 شنا</option>
+                      <option value="دوچرخه">🚴 دوچرخه</option>
+                      <option value="سایر">⚡ سایر</option>
+                    </select>
+                  </div>
+                  <div class="form-group date-field-group">
+                    <label>تاریخ</label>
+                    <div class="date-picker-field">
+                      <input
+                        type="text"
+                        id="sportDateDisplay"
+                        readonly
+                        placeholder="انتخاب تاریخ"
+                      />
+                      <button type="button" class="icon-btn" id="sportDateToggle">
+                        <i class="fa-solid fa-calendar-days"></i>
+                      </button>
+                      <input type="hidden" id="sportDate" />
+                    </div>
+                    <div class="mmc-panel compact hidden" id="sportDateCalPanel">
+                      <div class="mmc-header">
+                        <button type="button" class="icon-btn" id="sportDateCalPrev">
+                          <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <span id="sportDateCalLabel">—</span>
+                        <button type="button" class="icon-btn" id="sportDateCalNext">
+                          <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                      </div>
+                      <div class="mmc-weekdays">
+                        <span>ش</span><span>ی</span><span>د</span
+                        ><span>س</span><span>چ</span><span>پ</span
+                        ><span>ج</span>
+                      </div>
+                      <div class="mmc-grid" id="sportDateCalDays"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>ساعت شروع</label>
+                    <input type="time" id="sportStart" />
+                  </div>
+                  <div class="form-group">
+                    <label>ساعت پایان</label>
+                    <input type="time" id="sportEnd" />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>هزینه سربار (تومان)</label>
+                    <input type="text" id="sportCost" placeholder="0" />
+                    <span class="onboarding-hint"
+                      >هزینه‌های جانبی همین جلسه (آب معدنی، لباس...) —
+                      شهریه‌ی ثابت باشگاه رو از «هزینه‌ها» ثبت کن.</span
+                    >
+                  </div>
+                  <div class="form-group">
+                    <label>شدت</label>
+                    <select id="sportIntensity">
+                      <option value="سبک">سبک</option>
+                      <option value="متوسط" selected>متوسط</option>
+                      <option value="سنگین">سنگین</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>یادداشت</label>
+                  <textarea id="sportNote" rows="2"></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn-secondary" id="modalSportCancel">
+                  انصراف
+                </button>
+                <button class="btn-primary" id="modalSportSave">ذخیره</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- /comp-sport -->
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: تغذیه
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-food">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-utensils"></i> تغذیه</h2>
+            <button class="btn-primary" id="btn-add-food">
+              <i class="fa-solid fa-plus"></i> ثبت وعده
+            </button>
+          </div>
+
+          <!-- وعده‌های امروز -->
+          <div class="meal-grid" id="mealGrid">
+            <div class="meal-slot" data-meal="صبحانه">
+              <div class="meal-slot-header">
+                <span>🌅 صبحانه</span>
+                <button class="btn-sm" data-add-meal="صبحانه">+ اضافه</button>
+              </div>
+              <ul class="meal-items" id="meal-صبحانه"></ul>
+            </div>
+            <div class="meal-slot" data-meal="ناهار">
+              <div class="meal-slot-header">
+                <span>☀️ ناهار</span>
+                <button class="btn-sm" data-add-meal="ناهار">+ اضافه</button>
+              </div>
+              <ul class="meal-items" id="meal-ناهار"></ul>
+            </div>
+            <div class="meal-slot" data-meal="شام">
+              <div class="meal-slot-header">
+                <span>🌙 شام</span>
+                <button class="btn-sm" data-add-meal="شام">+ اضافه</button>
+              </div>
+              <ul class="meal-items" id="meal-شام"></ul>
+            </div>
+            <div class="meal-slot" data-meal="میان‌وعده">
+              <div class="meal-slot-header">
+                <span>🍎 میان‌وعده</span>
+                <button class="btn-sm" data-add-meal="میان‌وعده">
+                  + اضافه
+                </button>
+              </div>
+              <ul class="meal-items" id="meal-میان‌وعده"></ul>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card purple">
+              <div class="stat-icon"><i class="fa-solid fa-fire"></i></div>
+              <div class="stat-body">
+                <span class="stat-value" id="foodTodayCalories">0</span>
+                <span class="stat-label">کالری امروز</span>
+              </div>
+            </div>
+            <div class="stat-card teal">
+              <div class="stat-icon"><i class="fa-solid fa-utensils"></i></div>
+              <div class="stat-body">
+                <span class="stat-value" id="foodTodayCount">0</span>
+                <span class="stat-label">وعده‌ی ثبت‌شده امروز</span>
+              </div>
+            </div>
+            <div class="stat-card orange">
+              <div class="stat-icon">
+                <i class="fa-solid fa-chart-simple"></i>
+              </div>
+              <div class="stat-body">
+                <span class="stat-value" id="foodWeekAvg">0</span>
+                <span class="stat-label">میانگین کالری (۷ روز)</span>
+              </div>
+            </div>
+            <div class="stat-card blue">
+              <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+              <div class="stat-body">
+                <span class="stat-value" id="foodLastMeal">—</span>
+                <span class="stat-label">آخرین وعده‌ی ثبت‌شده</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- نمودار کالری -->
+          <div class="chart-card full-width">
+            <div class="chart-card-header">
+              <h3>کالری ۷ روز اخیر</h3>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="chartCalories"></canvas>
+            </div>
+          </div>
+
+          <!-- مودال ثبت وعده -->
+          <div class="modal-overlay hidden" id="modalFood">
+            <div class="modal-box">
+              <div class="modal-header">
+                <h3>ثبت وعده غذایی</h3>
+                <button class="modal-close" id="modalFoodClose">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label>وعده</label>
+                  <select id="foodMealType">
+                    <option>صبحانه</option>
+                    <option>ناهار</option>
+                    <option>شام</option>
+                    <option>میان‌وعده</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>نام غذا</label>
+                  <input
+                    type="text"
+                    id="foodName"
+                    placeholder="مثلاً: برنج و مرغ"
+                  />
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>کالری (تقریبی)</label>
+                    <input
+                      type="number"
+                      id="foodCalories"
+                      placeholder="کیلوکالری"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>ساعت مصرف</label>
+                    <input type="time" id="foodTime" />
+                  </div>
+                </div>
+                <div class="form-group date-field-group">
+                  <label>تاریخ</label>
+                  <div class="date-picker-field">
+                    <input type="text" id="foodDateDisplay" readonly placeholder="انتخاب تاریخ" />
+                    <button type="button" class="icon-btn" id="foodDateToggle">
+                      <i class="fa-solid fa-calendar-days"></i>
+                    </button>
+                    <input type="hidden" id="foodDate" />
+                  </div>
+                  <div class="mmc-panel compact hidden" id="foodDateCalPanel">
+                    <div class="mmc-header">
+                      <button type="button" class="icon-btn" id="foodDateCalPrev">
+                        <i class="fa-solid fa-chevron-right"></i>
+                      </button>
+                      <span id="foodDateCalLabel">—</span>
+                      <button type="button" class="icon-btn" id="foodDateCalNext">
+                        <i class="fa-solid fa-chevron-left"></i>
+                      </button>
+                    </div>
+                    <div class="mmc-weekdays">
+                      <span>ش</span><span>ی</span><span>د</span><span>س</span><span>چ</span><span>پ</span><span>ج</span>
+                    </div>
+                    <div class="mmc-grid" id="foodDateCalDays"></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>یادداشت</label>
+                  <textarea id="foodNote" rows="2"></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn-secondary" id="modalFoodCancel">
+                  انصراف
+                </button>
+                <button class="btn-primary" id="modalFoodSave">ذخیره</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- /comp-food -->
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: دارو و دکتر
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-medicine">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-pills"></i> دارو و دکتر</h2>
+            <div class="header-actions">
+              <button class="btn-secondary" id="btn-add-doctor">
+                <i class="fa-solid fa-stethoscope"></i> ویزیت دکتر
+              </button>
+              <button class="btn-primary" id="btn-add-medicine">
+                <i class="fa-solid fa-plus"></i> افزودن دارو
+              </button>
+            </div>
+          </div>
+
+          <!-- لیست داروها -->
+          <div class="section-title">داروهای جاری</div>
+          <div class="table-card">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>نام دارو</th>
+                  <th>دوز</th>
+                  <th>الگوی مصرف</th>
+                  <th>بازه</th>
+                  <th>ساعت‌های مصرف</th>
+                  <th>موجودی</th>
+                  <th>وضعیت امروز</th>
+                  <th>عملیات</th>
+                </tr>
+              </thead>
+              <tbody id="medicineTableBody">
+                <tr>
+                  <td colspan="8" class="empty-state">داروی فعالی ثبت نشده</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ویزیت‌های دکتر -->
+          <div class="section-title">سوابق مراجعه به پزشک‌ها و روند درمان</div>
+          <div class="table-card">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>پزشک / تخصص</th>
+                  <th>تاریخ</th>
+                  <th>هزینه</th>
+                  <th>تشخیص / یادداشت</th>
+                  <th>وضعیت روند درمان</th>
+                  <th>مراجعه بعدی</th>
+                  <th>عملیات</th>
+                </tr>
+              </thead>
+              <tbody id="doctorTableBody">
+                <tr>
+                  <td colspan="7" class="empty-state">ویزیتی ثبت نشده</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- مودال دارو -->
+          <div class="modal-overlay hidden" id="modalMedicine">
+            <div class="modal-box">
+              <div class="modal-header">
+                <h3>افزودن دارو</h3>
+                <button class="modal-close" id="modalMedicineClose">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label>نام دارو</label>
+                  <input
+                    type="text"
+                    id="medName"
+                    placeholder="مثلاً: قرص ویتامین D"
+                  />
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>دوز</label>
+                    <input
+                      type="text"
+                      id="medDose"
+                      placeholder="مثلاً: 1000 واحد"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>الگوی مصرف</label>
+                    <select id="medRepeat">
+                      <option value="روزانه">روزانه</option>
+                      <option value="یک روز در میان">یک روز در میان</option>
+                      <option value="هفتگی">هفتگی</option>
+                      <option value="در صورت نیاز">در صورت نیاز</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group date-field-group">
+                    <label>تاریخ شروع</label>
+                    <div class="date-picker-field">
+                      <input type="text" id="medStartDisplay" readonly placeholder="انتخاب تاریخ" />
+                      <button type="button" class="icon-btn" id="medStartToggle">
+                        <i class="fa-solid fa-calendar-days"></i>
+                      </button>
+                      <input type="hidden" id="medStart" />
+                    </div>
+                    <div class="mmc-panel compact hidden" id="medStartCalPanel">
+                      <div class="mmc-header">
+                        <button type="button" class="icon-btn" id="medStartCalPrev">
+                          <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <span id="medStartCalLabel">—</span>
+                        <button type="button" class="icon-btn" id="medStartCalNext">
+                          <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                      </div>
+                      <div class="mmc-weekdays">
+                        <span>ش</span><span>ی</span><span>د</span
+                        ><span>س</span><span>چ</span><span>پ</span
+                        ><span>ج</span>
+                      </div>
+                      <div class="mmc-grid" id="medStartCalDays"></div>
+                    </div>
+                  </div>
+                  <div class="form-group date-field-group">
+                    <label>تاریخ پایان (اختیاری)</label>
+                    <div class="date-picker-field">
+                      <input type="text" id="medEndDisplay" readonly placeholder="نامشخص / ادامه‌دار" />
+                      <button type="button" class="icon-btn" id="medEndToggle">
+                        <i class="fa-solid fa-calendar-days"></i>
+                      </button>
+                      <input type="hidden" id="medEnd" />
+                    </div>
+                    <div class="mmc-panel compact hidden" id="medEndCalPanel">
+                      <div class="mmc-header">
+                        <button type="button" class="icon-btn" id="medEndCalPrev">
+                          <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <span id="medEndCalLabel">—</span>
+                        <button type="button" class="icon-btn" id="medEndCalNext">
+                          <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                      </div>
+                      <div class="mmc-weekdays">
+                        <span>ش</span><span>ی</span><span>د</span
+                        ><span>س</span><span>چ</span><span>پ</span
+                        ><span>ج</span>
+                      </div>
+                      <div class="mmc-grid" id="medEndCalDays"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>ساعت‌های مصرف (مثلاً هر ۸ ساعت: ۰۸،۱۶،۰۰)</label>
+                  <div class="time-chip-row" id="medTimesRow"></div>
+                  <div class="time-chip-add">
+                    <input type="time" id="medTimeInput" />
+                    <button type="button" class="btn-secondary" id="btn-add-med-time">
+                      افزودن ساعت
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>تعداد موجودی</label>
+                  <input
+                    type="number"
+                    id="medStock"
+                    placeholder="تعداد قرص/کپسول"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>یادداشت</label>
+                  <textarea id="medNote" rows="2"></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn-secondary" id="modalMedicineCancel">
+                  انصراف
+                </button>
+                <button class="btn-primary" id="modalMedicineSave">
+                  ذخیره
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- مودال وضعیت مصرف امروز -->
+          <div class="modal-overlay hidden" id="modalMedStatus">
+            <div class="modal-box" style="max-width: 380px">
+              <div class="modal-header">
+                <h3 id="modalMedStatusTitle">وضعیت مصرف امروز</h3>
+                <button class="modal-close" id="modalMedStatusClose">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="med-status-options" id="medStatusOptions">
+                  <button class="med-status-btn taken" data-status="taken">
+                    <i class="fa-solid fa-check"></i> خوردم
+                  </button>
+                  <button class="med-status-btn skipped" data-status="skipped">
+                    <i class="fa-solid fa-xmark"></i> نخوردم
+                  </button>
+                  <button class="med-status-btn partial" data-status="partial">
+                    <i class="fa-solid fa-minus"></i> فقط بخشی خوردم
+                  </button>
+                  <button class="med-status-btn issue" data-status="issue">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    تداخل داشت / مشکل داشتم
+                  </button>
+                </div>
+                <div class="form-group">
+                  <label>توضیح (اختیاری — برای گزارش به پزشک)</label>
+                  <textarea
+                    id="medStatusNote"
+                    rows="2"
+                    placeholder="مثلاً: نصف قرص خوردم، یا با فلان دارو تداخل داد..."
+                  ></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn-secondary" id="modalMedStatusCancel">
+                  انصراف
+                </button>
+                <button class="btn-primary" id="modalMedStatusSave">ثبت</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- مودال ویزیت دکتر -->
+          <div class="modal-overlay hidden" id="modalDoctor">
+            <div class="modal-box">
+              <div class="modal-header">
+                <h3>ثبت ویزیت دکتر</h3>
+                <button class="modal-close" id="modalDoctorClose">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>نام پزشک</label>
+                    <input type="text" id="docName" placeholder="دکتر ..." />
+                  </div>
+                  <div class="form-group">
+                    <label>تخصص</label>
+                    <input
+                      type="text"
+                      id="docSpec"
+                      placeholder="مثلاً: متخصص داخلی"
+                    />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group date-field-group">
+                    <label>تاریخ ویزیت</label>
+                    <div class="date-picker-field">
+                      <input type="text" id="docDateDisplay" readonly placeholder="انتخاب تاریخ" />
+                      <button type="button" class="icon-btn" id="docDateToggle">
+                        <i class="fa-solid fa-calendar-days"></i>
+                      </button>
+                      <input type="hidden" id="docDate" />
+                    </div>
+                    <div class="mmc-panel compact hidden" id="docDateCalPanel">
+                      <div class="mmc-header">
+                        <button type="button" class="icon-btn" id="docDateCalPrev">
+                          <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <span id="docDateCalLabel">—</span>
+                        <button type="button" class="icon-btn" id="docDateCalNext">
+                          <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                      </div>
+                      <div class="mmc-weekdays">
+                        <span>ش</span><span>ی</span><span>د</span><span>س</span><span>چ</span><span>پ</span><span>ج</span>
+                      </div>
+                      <div class="mmc-grid" id="docDateCalDays"></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>هزینه ویزیت (تومان)</label>
+                    <input
+                      type="text"
+                      id="docCost"
+                      placeholder="مثلاً: 500,000"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>تشخیص / یادداشت</label>
+                  <textarea id="docNote" rows="3"></textarea>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>وضعیت روند درمان</label>
+                    <select id="docStatus">
+                      <option value="در حال درمان">در حال درمان</option>
+                      <option value="بهبود یافته">بهبود یافته</option>
+                      <option value="نیاز به پیگیری">نیاز به پیگیری</option>
+                      <option value="ارجاع به متخصص دیگر">
+                        ارجاع به متخصص دیگر
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group date-field-group">
+                    <label>تاریخ مراجعه بعدی</label>
+                    <div class="date-picker-field">
+                      <input type="text" id="docNextDateDisplay" readonly placeholder="انتخاب تاریخ" />
+                      <button type="button" class="icon-btn" id="docNextDateToggle">
+                        <i class="fa-solid fa-calendar-days"></i>
+                      </button>
+                      <input type="hidden" id="docNextDate" />
+                    </div>
+                    <div class="mmc-panel compact hidden" id="docNextDateCalPanel">
+                      <div class="mmc-header">
+                        <button type="button" class="icon-btn" id="docNextDateCalPrev">
+                          <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <span id="docNextDateCalLabel">—</span>
+                        <button type="button" class="icon-btn" id="docNextDateCalNext">
+                          <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                      </div>
+                      <div class="mmc-weekdays">
+                        <span>ش</span><span>ی</span><span>د</span><span>س</span><span>چ</span><span>پ</span><span>ج</span>
+                      </div>
+                      <div class="mmc-grid" id="docNextDateCalDays"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn-secondary" id="modalDoctorCancel">
+                  انصراف
+                </button>
+                <button class="btn-primary" id="modalDoctorSave">ذخیره</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- /comp-medicine -->
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: یادآوری‌ها
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-reminders">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-bell"></i> یادآوری‌ها</h2>
+            <button class="btn-primary" id="btn-add-reminder">
+              <i class="fa-solid fa-plus"></i> یادآوری جدید
+            </button>
+          </div>
+
+          <!-- فیلتر -->
+          <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">همه</button>
+            <button class="filter-btn" data-filter="today">امروز</button>
+            <button class="filter-btn" data-filter="upcoming">آینده</button>
+            <button class="filter-btn" data-filter="done">انجام‌شده</button>
+          </div>
+
+          <!-- لیست یادآوری‌ها — سه بخش: قبل / هفته جاری / بعد -->
+          <div class="reminder-sections">
+            <div class="reminder-section">
+              <h3 class="reminder-section-title overdue">
+                <i class="fa-solid fa-clock-rotate-left"></i> قبل (عقب‌افتاده)
+              </h3>
+              <div class="reminder-cards" id="reminderCardsPast">
+                <div class="empty-state">چیزی عقب نیفتاده 🎉</div>
+              </div>
+            </div>
+            <div class="reminder-section">
+              <h3 class="reminder-section-title current">
+                <i class="fa-solid fa-calendar-week"></i> هفته جاری
+              </h3>
+              <div class="reminder-cards" id="reminderCardsCurrent">
+                <div class="empty-state">یادآوری‌ای نیست</div>
+              </div>
+            </div>
+            <div class="reminder-section">
+              <h3 class="reminder-section-title future">
+                <i class="fa-solid fa-forward"></i> بعد
+              </h3>
+              <div class="reminder-cards" id="reminderCardsFuture">
+                <div class="empty-state">یادآوری‌ای نیست</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- مودال یادآوری -->
+          <div class="modal-overlay hidden" id="modalReminder">
+            <div class="modal-box">
+              <div class="modal-header">
+                <h3>یادآوری جدید</h3>
+                <button class="modal-close" id="modalReminderClose">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label>عنوان</label>
+                  <input
+                    type="text"
+                    id="reminderTitle"
+                    placeholder="مثلاً: قرص صبح"
+                  />
+                </div>
+                <div class="form-row">
+                  <div class="form-group date-field-group">
+                    <label>تاریخ</label>
+                    <div class="date-picker-field">
+                      <input type="text" id="reminderDateDisplay" readonly placeholder="انتخاب تاریخ" />
+                      <button type="button" class="icon-btn" id="reminderDateToggle">
+                        <i class="fa-solid fa-calendar-days"></i>
+                      </button>
+                      <input type="hidden" id="reminderDate" />
+                    </div>
+                    <div class="mmc-panel compact hidden" id="reminderDateCalPanel">
+                      <div class="mmc-header">
+                        <button type="button" class="icon-btn" id="reminderDateCalPrev">
+                          <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <span id="reminderDateCalLabel">—</span>
+                        <button type="button" class="icon-btn" id="reminderDateCalNext">
+                          <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                      </div>
+                      <div class="mmc-weekdays">
+                        <span>ش</span><span>ی</span><span>د</span><span>س</span><span>چ</span><span>پ</span><span>ج</span>
+                      </div>
+                      <div class="mmc-grid" id="reminderDateCalDays"></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>ساعت</label>
+                    <input type="time" id="reminderTime" />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>دسته</label>
+                    <select id="reminderCategory">
+                      <option>دارو</option>
+                      <option>ورزش</option>
+                      <option>قرار دکتر</option>
+                      <option>خانواده</option>
+                      <option>کار</option>
+                      <option>عمومی</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>تکرار</label>
+                    <select id="reminderRepeat">
+                      <option value="none">بدون تکرار</option>
+                      <option value="daily">روزانه</option>
+                      <option value="weekly">هفتگی</option>
+                      <option value="monthly">ماهانه</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn-secondary" id="modalReminderCancel">
+                  انصراف
+                </button>
+                <button class="btn-primary" id="modalReminderSave">
+                  ذخیره
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- /comp-reminders -->
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: تقویم
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-calendar">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-calendar-days"></i> دفتر زندگی و خاطرات</h2>
+            <div class="page-header-actions">
+              <button
+                class="btn-secondary hidden"
+                id="btn-change-calendar-pin"
+              >
+                <i class="fa-solid fa-key"></i> تغییر رمز این بخش
+              </button>
+              <button
+                class="btn-secondary btn-quick-lock hidden"
+                id="btn-quick-lock-calendar"
+                type="button"
+                title="قفل سریع — همین الان ببندش و برو خانه"
+              >
+                <i class="fa-solid fa-lock"></i> قفل سریع
+              </button>
+            </div>
+          </div>
+
+          <div id="calendarContent">
+            <p class="settings-desc">
+              دفترچه‌ی خاطره‌ها و اتفاق‌های مهم زندگیت — تولد، ازدواج، نامزدی،
+              اولین قرار، و حتی خاطرات تلخ. روی هر روز بزن تا ببینی یا اضافه
+              کنی.
+            </p>
+
+            <div class="mmc-panel big" id="calPanel">
+              <div class="mmc-header">
+                <button class="icon-btn" id="calPrev">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+                <span id="calMonthLabel">—</span>
+                <button class="icon-btn" id="calNext">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+              </div>
+              <div class="mmc-weekdays">
+                <span>شنبه</span><span>یک‌شنبه</span><span>دوشنبه</span
+                ><span>سه‌شنبه</span><span>چهارشنبه</span><span>پنج‌شنبه</span
+                ><span>جمعه</span>
+              </div>
+              <div class="mmc-grid big" id="calDays"></div>
+            </div>
+          </div>
+
+          <!-- قفل مخصوص همین بخش — هر بار که این صفحه لود بشه دوباره باز میشه -->
+          <div class="calendar-lock-overlay hidden" id="calendarLockOverlay">
+            <div class="calendar-lock-box">
+              <i class="fa-solid fa-lock"></i>
+
+              <div id="calendarLockEnterBox">
+                <h3>این بخش خصوصیه</h3>
+                <p>برای دیدنش رمزِ همین قسمت رو وارد کن</p>
+                <input
+                  type="password"
+                  inputmode="numeric"
+                  maxlength="16"
+                  id="calendarLockPin"
+                  class="lock-pin-input"
+                  placeholder="••••"
+                />
+                <div class="lock-error" id="calendarLockError"></div>
+                <button class="btn-primary full-width" id="btn-calendar-unlock">
+                  باز کردن
+                </button>
+              </div>
+
+              <div class="hidden" id="calendarLockSetupBox">
+                <h3>اول یه رمز برای این بخش بذار</h3>
+                <p>
+                  این رمز جدا از رمز کل برنامه‌ست؛ هر بار بخوای این بخش رو
+                  ببینی، دوباره پرسیده می‌شه.
+                </p>
+                <input
+                  type="password"
+                  inputmode="numeric"
+                  maxlength="16"
+                  id="calendarLockNew1"
+                  placeholder="رمز (۴ تا ۱۶ رقم)"
+                  class="lock-pin-input"
+                />
+                <input
+                  type="password"
+                  inputmode="numeric"
+                  maxlength="16"
+                  id="calendarLockNew2"
+                  placeholder="تکرار رمز"
+                  class="lock-pin-input"
+                />
+                <div class="lock-error" id="calendarLockSetupError"></div>
+                <button class="btn-primary full-width" id="btn-calendar-set-pin">
+                  ذخیره و ورود
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- مودال رویدادهای یک روز -->
+          <div class="modal-overlay hidden" id="modalDayEvents">
+            <div class="modal-box modal-box-wide">
+              <div class="modal-header">
+                <h3 id="dayEventsTitle">رویدادهای روز</h3>
+                <button class="modal-close" id="modalDayEventsClose">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="table-card" style="box-shadow: none; padding: 0">
+                  <table class="data-table" id="dayEventsTable">
+                    <thead>
+                      <tr>
+                        <th>نوع</th>
+                        <th>عنوان</th>
+                        <th>عکس‌ها</th>
+                        <th>یادداشت</th>
+                        <th>عملیات</th>
+                      </tr>
+                    </thead>
+                    <tbody id="dayEventsList"></tbody>
+                  </table>
+                </div>
+
+                <button
+                  class="btn-secondary full-width"
+                  id="btn-add-life-event"
+                  style="margin-top: 1rem"
+                >
+                  <i class="fa-solid fa-plus"></i> افزودن رویداد برای این روز
+                </button>
+
+                <div class="life-event-form hidden" id="lifeEventForm">
+                  <h4 id="lifeEventFormTitle" class="settings-subtitle">
+                    رویداد جدید
+                  </h4>
+                  <div class="form-group">
+                    <label>نوع رویداد</label>
+                    <select id="lifeEventType">
+                      <option value="تولد">🎂 تولد</option>
+                      <option value="نامزدی">💍 نامزدی</option>
+                      <option value="ازدواج">💒 ازدواج</option>
+                      <option value="اولین قرار">🌹 اولین قرار</option>
+                      <option value="خاطره عاشقانه">💌 خاطره‌ی عاشقانه</option>
+                      <option value="طلاق">💔 طلاق</option>
+                      <option value="فوت">🕯️ فوت</option>
+                      <option value="مصیبت">😢 مصیبت / داغ</option>
+                      <option value="سایر">📌 سایر</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>عنوان (مثلاً اسم شخص)</label>
+                    <input
+                      type="text"
+                      id="lifeEventTitle"
+                      placeholder="مثلاً: تولد مامان"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>یادداشت / حس و واکنشت</label>
+                    <textarea
+                      id="lifeEventNote"
+                      rows="3"
+                      placeholder="هرچی دلت می‌خواد بنویس..."
+                    ></textarea>
+                    <button
+                      type="button"
+                      class="link-btn hidden"
+                      id="btn-view-note-history"
+                    >
+                      <i class="fa-solid fa-clock-rotate-left"></i> دیدن
+                      نسخه‌های قبلیِ این یادداشت
+                    </button>
+                  </div>
+                  <div class="form-group">
+                    <label>عکس (اختیاری — چندتا هم می‌تونی اضافه کنی)</label>
+                    <div class="life-event-photo-row" id="lifeEventPhotoRow"></div>
+                    <label class="btn-secondary btn-upload-label">
+                      <i class="fa-solid fa-camera"></i> افزودن عکس
+                      <input
+                        type="file"
+                        id="lifeEventPhotoInput"
+                        accept="image/*"
+                        multiple
+                        style="display: none"
+                      />
+                    </label>
+                  </div>
+                  <div class="modal-footer" style="padding: 0.75rem 0 0">
+                    <button class="btn-secondary" id="btn-cancel-life-event">
+                      انصراف
+                    </button>
+                    <button class="btn-primary" id="btn-save-life-event">
+                      ذخیره
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- آلبوم/لایت‌باکس عکس‌ها -->
+          <div class="modal-overlay hidden" id="modalLightbox">
+            <div class="lightbox-box">
+              <button class="modal-close lightbox-close" id="lightboxClose">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+              <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+              <img id="lightboxImg" class="lightbox-img" />
+              <button class="lightbox-nav lightbox-next" id="lightboxNext">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <div class="lightbox-counter" id="lightboxCounter"></div>
+            </div>
+          </div>
+
+          <!-- تاریخچه‌ی یادداشت -->
+          <div class="modal-overlay hidden" id="modalNoteHistory">
+            <div class="modal-box" style="max-width: 420px">
+              <div class="modal-header">
+                <h3>تاریخچه‌ی این یادداشت</h3>
+                <button class="modal-close" id="modalNoteHistoryClose">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div id="noteHistoryList"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- /comp-calendar -->
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: خانواده
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-family">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-people-group"></i> خانواده</h2>
+            <button class="btn-primary" id="btn-add-family">
+              <i class="fa-solid fa-plus"></i> ثبت رویداد
+            </button>
+          </div>
+          <div class="table-card">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>نوع</th>
+                  <th>عنوان</th>
+                  <th>اعضا</th>
+                  <th>اولویت</th>
+                  <th>تاریخ</th>
+                  <th>یادداشت</th>
+                  <th>عملیات</th>
+                </tr>
+              </thead>
+              <tbody id="familyTableBody">
+                <tr>
+                  <td colspan="7" class="empty-state">رویدادی ثبت نشده</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <!-- /comp-family -->
+
+        <!-- مودال رویداد خانوادگی -->
+        <div class="modal-overlay hidden" id="modalFamily">
+          <div class="modal-box">
+            <div class="modal-header">
+              <h3>ثبت رویداد خانوادگی</h3>
+              <button class="modal-close" id="modalFamilyClose">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>نوع رویداد</label>
+                  <select id="familyType">
+                    <option value="تولد">🎂 تولد</option>
+                    <option value="سالگرد">💍 سالگرد</option>
+                    <option value="دورهمی">🍽️ دورهمی</option>
+                    <option value="سفر">🧳 سفر خانوادگی</option>
+                    <option value="مراسم">🕯️ مراسم</option>
+                    <option value="سایر">📌 سایر</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>اولویت</label>
+                  <select id="familyPriority">
+                    <option value="عادی">عادی</option>
+                    <option value="مهم">مهم</option>
+                    <option value="خیلی مهم">خیلی مهم</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>عنوان</label>
+                <input
+                  type="text"
+                  id="familyTitle"
+                  placeholder="مثلاً: تولد بابا"
+                />
+              </div>
+              <div class="form-group">
+                <label>اعضا (با کاما جدا کن)</label>
+                <input
+                  type="text"
+                  id="familyMembers"
+                  placeholder="مثلاً: بابا، مامان، آرش"
+                />
+              </div>
+              <div class="form-group date-field-group">
+                <label>تاریخ</label>
+                <div class="date-picker-field">
+                  <input type="text" id="familyDateDisplay" readonly placeholder="انتخاب تاریخ" />
+                  <button type="button" class="icon-btn" id="familyDateToggle">
+                    <i class="fa-solid fa-calendar-days"></i>
+                  </button>
+                  <input type="hidden" id="familyDate" />
+                </div>
+                <div class="mmc-panel compact hidden" id="familyDateCalPanel">
+                  <div class="mmc-header">
+                    <button type="button" class="icon-btn" id="familyDateCalPrev">
+                      <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <span id="familyDateCalLabel">—</span>
+                    <button type="button" class="icon-btn" id="familyDateCalNext">
+                      <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                  </div>
+                  <div class="mmc-weekdays">
+                    <span>ش</span><span>ی</span><span>د</span><span>س</span
+                    ><span>چ</span><span>پ</span><span>ج</span>
+                  </div>
+                  <div class="mmc-grid" id="familyDateCalDays"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>یادداشت</label>
+                <textarea id="familyNote" rows="2"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn-secondary" id="modalFamilyCancel">
+                انصراف
+              </button>
+              <button class="btn-primary" id="modalFamilySave">ذخیره</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: تفریح
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-leisure">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-gamepad"></i> تفریح</h2>
+            <button class="btn-primary" id="btn-add-leisure">
+              <i class="fa-solid fa-plus"></i> ثبت فعالیت
+            </button>
+          </div>
+          <div class="leisure-tags" id="leisureTags">
+            <span class="leisure-tag active" data-type="">همه</span>
+            <span class="leisure-tag" data-type="فیلم">🎬 فیلم</span>
+            <span class="leisure-tag" data-type="کتاب">📖 کتاب</span>
+            <span class="leisure-tag" data-type="موسیقی">🎵 موسیقی</span>
+            <span class="leisure-tag" data-type="گردش">🌿 گردش</span>
+            <span class="leisure-tag" data-type="بازی">🎮 بازی</span>
+            <span class="leisure-tag" data-type="سایر">✨ سایر</span>
+          </div>
+          <div class="cards-grid" id="leisureCardsGrid">
+            <div class="empty-state">فعالیتی ثبت نشده</div>
+          </div>
+        </section>
+        <!-- /comp-leisure -->
+
+        <!-- مودال ثبت تفریح -->
+        <div class="modal-overlay hidden" id="modalLeisure">
+          <div class="modal-box">
+            <div class="modal-header">
+              <h3>ثبت فعالیت تفریحی</h3>
+              <button class="modal-close" id="modalLeisureClose">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>عنوان</label>
+                <input
+                  type="text"
+                  id="leisureTitle"
+                  placeholder="مثلاً: تماشای اینترستلار"
+                />
+              </div>
+              <div class="form-group">
+                <label>نوع</label>
+                <select id="leisureType">
+                  <option value="فیلم">🎬 فیلم</option>
+                  <option value="کتاب">📖 کتاب</option>
+                  <option value="موسیقی">🎵 موسیقی</option>
+                  <option value="گردش">🌿 گردش</option>
+                  <option value="بازی">🎮 بازی</option>
+                  <option value="سایر">✨ سایر</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>امتیاز</label>
+                <div class="star-picker" id="leisureStarPicker">
+                  <i class="fa-solid fa-star" data-star="1"></i>
+                  <i class="fa-solid fa-star" data-star="2"></i>
+                  <i class="fa-solid fa-star" data-star="3"></i>
+                  <i class="fa-solid fa-star" data-star="4"></i>
+                  <i class="fa-solid fa-star" data-star="5"></i>
+                </div>
+                <input type="hidden" id="leisureRating" value="4" />
+              </div>
+              <div class="form-group date-field-group">
+                <label>تاریخ</label>
+                <div class="date-picker-field">
+                  <input type="text" id="leisureDateDisplay" readonly placeholder="انتخاب تاریخ" />
+                  <button type="button" class="icon-btn" id="leisureDateToggle">
+                    <i class="fa-solid fa-calendar-days"></i>
+                  </button>
+                  <input type="hidden" id="leisureDate" />
+                </div>
+                <div class="mmc-panel compact hidden" id="leisureDateCalPanel">
+                  <div class="mmc-header">
+                    <button type="button" class="icon-btn" id="leisureDateCalPrev">
+                      <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <span id="leisureDateCalLabel">—</span>
+                    <button type="button" class="icon-btn" id="leisureDateCalNext">
+                      <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                  </div>
+                  <div class="mmc-weekdays">
+                    <span>ش</span><span>ی</span><span>د</span><span>س</span
+                    ><span>چ</span><span>پ</span><span>ج</span>
+                  </div>
+                  <div class="mmc-grid" id="leisureDateCalDays"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>یادداشت</label>
+                <textarea id="leisureNote" rows="2"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn-secondary" id="modalLeisureCancel">
+                انصراف
+              </button>
+              <button class="btn-primary" id="modalLeisureSave">ذخیره</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: هزینه‌ها
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-finance">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-wallet"></i> هزینه‌ها و مالی</h2>
+            <button class="btn-primary" id="btn-add-finance">
+              <i class="fa-solid fa-plus"></i> ثبت هزینه
+            </button>
+          </div>
+
+          <!-- خلاصه ماهانه -->
+          <div class="stats-grid">
+            <div class="stat-card purple">
+              <div class="stat-icon">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+              </div>
+              <div class="stat-body">
+                <span class="stat-value" id="finTotalMonth">0</span>
+                <span class="stat-label">کل هزینه این ماه</span>
+              </div>
+              <div class="stat-footer">تومان</div>
+            </div>
+            <div class="stat-card orange">
+              <div class="stat-icon"><i class="fa-solid fa-dumbbell"></i></div>
+              <div class="stat-body">
+                <span class="stat-value" id="finSport">0</span>
+                <span class="stat-label">ورزش و یوگا</span>
+              </div>
+              <div class="stat-footer">تومان</div>
+            </div>
+            <div class="stat-card teal">
+              <div class="stat-icon">
+                <i class="fa-solid fa-stethoscope"></i>
+              </div>
+              <div class="stat-body">
+                <span class="stat-value" id="finHealth">0</span>
+                <span class="stat-label">بهداشت و درمان</span>
+              </div>
+              <div class="stat-footer">تومان</div>
+            </div>
+            <div class="stat-card blue">
+              <div class="stat-icon">
+                <i class="fa-solid fa-bag-shopping"></i>
+              </div>
+              <div class="stat-body">
+                <span class="stat-value" id="finOther">0</span>
+                <span class="stat-label">سایر هزینه‌ها</span>
+              </div>
+              <div class="stat-footer">تومان</div>
+            </div>
+          </div>
+
+          <!-- نمودار -->
+          <div class="charts-row">
+            <div class="chart-card wide">
+              <div class="chart-card-header">
+                <h3>هزینه‌های ماه جاری</h3>
+              </div>
+              <div class="chart-wrap">
+                <canvas id="chartFinanceBar"></canvas>
+              </div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <h3>توزیع هزینه‌ها</h3>
+              </div>
+              <div class="chart-wrap">
+                <canvas id="chartFinancePie"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- جدول هزینه‌ها -->
+          <div class="table-card">
+            <div class="table-toolbar">
+              <input
+                type="text"
+                class="table-search"
+                placeholder="جستجو..."
+                id="financeSearch"
+              />
+              <select id="financeFilter" class="table-filter">
+                <option value="">همه دسته‌ها</option>
+                <option value="ورزش">ورزش</option>
+                <option value="یوگا">یوگا</option>
+                <option value="باشگاه">باشگاه</option>
+                <option value="دکتر">دکتر</option>
+                <option value="دارو">دارو</option>
+                <option value="خوراک">خوراک</option>
+                <option value="تفریح">تفریح</option>
+                <option value="سایر">سایر</option>
+              </select>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>عنوان</th>
+                  <th>دسته</th>
+                  <th>تاریخ</th>
+                  <th>مبلغ</th>
+                  <th>یادداشت</th>
+                  <th>عملیات</th>
+                </tr>
+              </thead>
+              <tbody id="financeTableBody">
+                <tr>
+                  <td colspan="6" class="empty-state">هزینه‌ای ثبت نشده</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- مودال ثبت هزینه -->
+          <div class="modal-overlay hidden" id="modalFinance">
+            <div class="modal-box">
+              <div class="modal-header">
+                <h3>ثبت هزینه</h3>
+                <button class="modal-close" id="modalFinanceClose">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label>عنوان</label>
+                  <input
+                    type="text"
+                    id="finTitle"
+                    placeholder="مثلاً: شهریه باشگاه"
+                  />
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>دسته</label>
+                    <select id="finCategory">
+                      <option value="اجاره خانه">🏠 اجاره خانه</option>
+                      <option value="اجاره دفتر">🏢 اجاره دفتر</option>
+                      <option value="شهریه دانشگاه">🎓 شهریه دانشگاه</option>
+                      <option value="شهریه مهدکودک">🧸 شهریه مهدکودک</option>
+                      <option value="شهریه کلاس موسیقی">🎵 شهریه کلاس موسیقی</option>
+                      <option value="باشگاه">🏋️ باشگاه</option>
+                      <option value="یوگا">🧘 یوگا</option>
+                      <option value="ورزش">🏃 ورزش</option>
+                      <option value="دکتر">🏥 دکتر</option>
+                      <option value="دارو">💊 دارو</option>
+                      <option value="بیمه">🛡️ بیمه</option>
+                      <option value="تصادف">🚧 تصادف</option>
+                      <option value="حمل و نقل">🚕 حمل و نقل</option>
+                      <option value="قبض">🧾 قبض (آب/برق/گاز/اینترنت)</option>
+                      <option value="خوراک">🍽️ خوراک</option>
+                      <option value="تفریح">🎬 تفریح</option>
+                      <option value="سایر">📌 سایر</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>مبلغ (تومان)</label>
+                    <input
+                      type="text"
+                      id="finAmount"
+                      placeholder="مثلاً: 1,500,000"
+                    />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group date-field-group">
+                    <label>تاریخ</label>
+                    <div class="date-picker-field">
+                      <input type="text" id="finDateDisplay" readonly placeholder="انتخاب تاریخ" />
+                      <button type="button" class="icon-btn" id="finDateToggle">
+                        <i class="fa-solid fa-calendar-days"></i>
+                      </button>
+                      <input type="hidden" id="finDate" />
+                    </div>
+                    <div class="mmc-panel compact hidden" id="finDateCalPanel">
+                      <div class="mmc-header">
+                        <button type="button" class="icon-btn" id="finDateCalPrev">
+                          <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <span id="finDateCalLabel">—</span>
+                        <button type="button" class="icon-btn" id="finDateCalNext">
+                          <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                      </div>
+                      <div class="mmc-weekdays">
+                        <span>ش</span><span>ی</span><span>د</span
+                        ><span>س</span><span>چ</span><span>پ</span
+                        ><span>ج</span>
+                      </div>
+                      <div class="mmc-grid" id="finDateCalDays"></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>تکرار ماهانه؟</label>
+                    <select id="finRecurring">
+                      <option value="no">خیر</option>
+                      <option value="monthly">ماهانه</option>
+                      <option value="yearly">سالانه</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>یادداشت</label>
+                  <textarea id="finNote" rows="2"></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn-secondary" id="modalFinanceCancel">
+                  انصراف
+                </button>
+                <button class="btn-primary" id="modalFinanceSave">ذخیره</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- /comp-finance -->
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: رویدادها و بازخورد (گزارش)
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-events">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-clipboard-check"></i> رویدادها و بازخورد</h2>
+          </div>
+          <p class="settings-desc">
+            گزارش یکجای وظیفه‌ها، ورزش، دارو و آب — برای هر ردیف می‌تونی
+            بنویسی چی شد، بعد کل بازه رو چاپ کنی یا اکسل بگیری.
+          </p>
+
+          <div class="events-toolbar">
+            <div class="events-range-tabs" id="eventsRangeTabs">
+              <button class="chart-tab active" data-range="today">امروز</button>
+              <button class="chart-tab" data-range="week">این هفته</button>
+              <button class="chart-tab" data-range="month">این ماه</button>
+            </div>
+            <div class="events-actions">
+              <button class="btn-secondary" id="btn-events-export">
+                <i class="fa-solid fa-file-csv"></i> خروجی اکسل
+              </button>
+              <button class="btn-secondary" id="btn-events-print">
+                <i class="fa-solid fa-print"></i> چاپ
+              </button>
+            </div>
+          </div>
+
+          <div class="events-table-wrap" id="eventsTableWrap">
+            <table class="events-table" id="eventsTable">
+              <thead>
+                <tr>
+                  <th>تاریخ</th>
+                  <th>نوع</th>
+                  <th>عنوان</th>
+                  <th>جزئیات</th>
+                  <th>وضعیت</th>
+                  <th>گزارش / بازخورد</th>
+                </tr>
+              </thead>
+              <tbody id="eventsTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+        <!-- /comp-events -->
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: گالری تصاویر
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-gallery">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-images"></i> گالری تصاویر</h2>
+          </div>
+          <p class="settings-desc">
+            عکس‌هاتو از روی دیسک باز کن؛ اگه خواستی برای همیشه توی گالری
+            بمونن «ذخیره در گالری» رو بزن. این بخش کاملاً جدا از عکس‌های
+            دفتر زندگی و خاطراته و بهشون دسترسی نداره.
+          </p>
+
+          <div class="gal-toolbar">
+            <label class="btn-secondary gal-add-btn" title="فقط همین بار نشون داده می‌شه و جایی ذخیره نمی‌شه">
+              <i class="fa-solid fa-folder-open"></i> باز کردن از دیسک
+              <input type="file" id="galFileTemp" accept="image/*" multiple hidden />
+            </label>
+            <label class="btn-primary gal-add-btn" title="داخل مرورگر ذخیره می‌شه و دفعه‌ی بعد هم هست">
+              <i class="fa-solid fa-floppy-disk"></i> افزودن و ذخیره در گالری
+              <input type="file" id="galFileSave" accept="image/*" multiple hidden />
+            </label>
+          </div>
+
+          <div class="gal-grid" id="galGrid"></div>
+        </section>
+        <!-- /comp-gallery -->
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: اسناد و فایل‌ها
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-documents">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-folder-open"></i> اسناد و فایل‌ها</h2>
+          </div>
+          <p class="settings-desc">
+            یه پوشه روی دیسک انتخاب کن؛ فایل‌های Word، Excel، PowerPoint، PDF
+            و متنی مستقیم از همون پوشه نمایش داده می‌شن — چیزی کپی یا آپلود
+            نمی‌شه. این بخش فقط برای نمایشه؛ برای ویرایش، فایل رو دانلود کن
+            و توی برنامه‌ی خودش باز کن.
+          </p>
+
+          <div class="doc-toolbar">
+            <button class="btn-primary" id="btn-doc-pick-folder" type="button">
+              <i class="fa-solid fa-folder-open"></i> انتخاب پوشه
+            </button>
+            <nav class="doc-breadcrumb" id="docBreadcrumb"></nav>
+            <button class="icon-btn icon-btn-sm" id="btn-doc-refresh" type="button" title="بروزرسانی لیست">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+          </div>
+
+          <div class="doc-body" id="docBody"></div>
+        </section>
+        <!-- /comp-documents -->
+
+        <!-- ══════════════════════════════════════
+         کامپوننت: تنظیمات
+    ══════════════════════════════════════ -->
+        <section class="comp-page" id="comp-settings">
+          <div class="page-header">
+            <h2><i class="fa-solid fa-gear"></i> تنظیمات</h2>
+          </div>
+
+          <div class="settings-grid">
+            <div class="settings-card">
+              <h3>پروفایل من</h3>
+              <div class="settings-avatar-row">
+                <img
+                  id="settingsAvatar"
+                  class="zoomable-avatar settings-avatar"
+                  src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23a78bfa'/%3E%3C/svg%3E"
+                  alt="پروفایل"
+                />
+                <label class="btn-secondary btn-upload-label">
+                  <i class="fa-solid fa-camera"></i> تغییر عکس
+                  <input
+                    type="file"
+                    id="setProfileAvatarInput"
+                    accept="image/*"
+                    style="display: none"
+                  />
+                </label>
+              </div>
+              <p class="settings-desc">
+                عکس پروفایل توی پوشه‌ی <code dir="ltr">avatar/</code> کنار برنامه
+                ذخیره می‌شه (نه توی مرورگر). بعد از انتخاب عکس، «ذخیره پروفایل»
+                رو بزن.
+              </p>
+              <div class="form-group">
+                <label>اسم</label>
+                <input type="text" id="setProfileName" placeholder="اسمت..." />
+              </div>
+              <div class="form-group">
+                <label>شغل / سبک زندگی</label>
+                <select id="setProfileJob">
+                  <option value="employee">👔 کارمند</option>
+                  <option value="student">🎓 دانشجو</option>
+                  <option value="pupil">🏫 محصل</option>
+                  <option value="freelancer">💻 فریلنسر</option>
+                  <option value="homemaker">🏠 خانه‌دار</option>
+                  <option value="athlete">🏋️ ورزشکار / مربی</option>
+                  <option value="teacher">🎓 استاد / معلم</option>
+                  <option value="doctor">🩺 پزشک</option>
+                  <option value="psychologist">🧠 روان‌شناس</option>
+                  <option value="salesperson">🛍️ فروشنده</option>
+                  <option value="manager">🧑‍💼 مدیر</option>
+                  <option value="merchant">🧾 بازاری / بازرگان</option>
+                  <option value="lawyer">⚖️ وکیل</option>
+                  <option value="judge">👨‍⚖️ قاضی</option>
+                  <option value="engineer">🛠️ مهندس</option>
+                  <option value="technician">🔧 فنی‌کار</option>
+                  <option value="driver">🚗 راننده</option>
+                  <option value="retired">🌿 بازنشسته</option>
+                  <option value="other">✨ سایر</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>شهر (برای آب‌وهوا)</label>
+                <input
+                  type="text"
+                  id="setProfileCity"
+                  placeholder="مثلاً: تهران"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="form-group">
+                <label>نام برنامه (بالای سایدبار)</label>
+                <input
+                  type="text"
+                  id="setAppName"
+                  placeholder="زندگی‌یار"
+                />
+              </div>
+              <button class="btn-primary" id="btn-save-profile">
+                ذخیره پروفایل
+              </button>
+            </div>
+
+            <div class="settings-card">
+              <h3>دسته‌بندی‌های وظایف</h3>
+              <p class="settings-desc">
+                دسته‌های متناسب با کار و روزمره‌ی خودت رو بساز.
+              </p>
+              <div class="category-chips" id="categoryChipsWrap"></div>
+              <div class="form-row category-add-row">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="newCategoryInput"
+                    placeholder="دسته‌ی جدید..."
+                  />
+                </div>
+                <button class="btn-secondary" id="btn-add-category">
+                  افزودن
+                </button>
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <h3><i class="fa-solid fa-lock"></i> حریم خصوصی</h3>
+              <p class="settings-desc">
+                همه‌چیز فقط روی همین دستگاه ذخیره می‌شه؛ بدون سرور، بدون
+                اینترنت.
+              </p>
+              <label class="toggle-row">
+                <span>قفل برنامه با رمز</span>
+                <input
+                  type="checkbox"
+                  id="setLockEnabled"
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+              <div id="pinSetupBox" class="pin-setup-box hidden">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>رمز (۴ تا ۶ رقم)</label>
+                    <input
+                      type="password"
+                      inputmode="numeric"
+                      maxlength="6"
+                      id="pinInput1"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>تکرار رمز</label>
+                    <input
+                      type="password"
+                      inputmode="numeric"
+                      maxlength="6"
+                      id="pinInput2"
+                    />
+                  </div>
+                </div>
+                <button class="btn-primary" id="btn-save-pin">
+                  ذخیره رمز
+                </button>
+                <p class="settings-desc small">
+                  ⚠️ اگه رمز رو فراموش کنی، تنها راه برگشت پاک‌کردن کامل
+                  داده‌هاست؛ چون سروری برای ریست‌کردن رمز وجود نداره.
+                </p>
+              </div>
+
+              <h4 class="settings-subtitle">بخش‌های خصوصی</h4>
+              <p class="settings-desc">
+                هر بخشی رو که تیک بزنی، از منوی کناری مخفی می‌شه.
+              </p>
+              <div id="hiddenSectionsList" class="hidden-sections-list"></div>
+            </div>
+
+            <div class="settings-card">
+              <h3>اطلاع‌رسانی</h3>
+              <label class="toggle-row">
+                <span>اعلان یادآوری‌ها</span>
+                <input
+                  type="checkbox"
+                  id="setNotif"
+                  checked
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+              <label class="toggle-row">
+                <span>اعلان دارو</span>
+                <input
+                  type="checkbox"
+                  id="setMedNotif"
+                  checked
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+              <label class="toggle-row">
+                <span>اعلان ورزش</span>
+                <input
+                  type="checkbox"
+                  id="setSportNotif"
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="settings-card ds-card">
+              <h3><i class="fa-solid fa-plug"></i> منابع داده‌ی آب‌وهوا و قیمت‌ها</h3>
+              <p class="settings-desc">
+                اگه اشتراک یه سرویس داری، آدرس API و کلیدش رو اینجا بذار تا از
+                همون خونده بشه. خالی بذاری، از سرویس‌های رایگان پیش‌فرض
+                (آب‌وهوا: Open-Meteo — قیمت‌ها: tgju و CoinGecko) استفاده می‌شه.
+              </p>
+
+              <div class="form-group">
+                <label>API آب‌وهوا — آدرس</label>
+                <input
+                  type="text"
+                  id="setWeatherUrl"
+                  dir="ltr"
+                  placeholder="https://api.openweathermap.org/data/2.5/weather?q={city}&amp;appid={key}&amp;units=metric&amp;lang=fa"
+                  autocomplete="off"
+                  spellcheck="false"
+                />
+              </div>
+              <div class="form-group">
+                <label>API آب‌وهوا — کلید (اختیاری)</label>
+                <input
+                  type="password"
+                  id="setWeatherKey"
+                  dir="ltr"
+                  autocomplete="off"
+                  spellcheck="false"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>API قیمت‌ها (ارز، طلا، سکه، رمزارز) — آدرس</label>
+                <input
+                  type="text"
+                  id="setRatesUrl"
+                  dir="ltr"
+                  placeholder="https://brsapi.ir/Api/Market/Gold_Currency.php?key={key}"
+                  autocomplete="off"
+                  spellcheck="false"
+                />
+              </div>
+              <div class="form-group">
+                <label>API قیمت‌ها — کلید (اختیاری)</label>
+                <input
+                  type="password"
+                  id="setRatesKey"
+                  dir="ltr"
+                  autocomplete="off"
+                  spellcheck="false"
+                />
+              </div>
+
+              <ul class="ds-help">
+                <li>
+                  توی آدرس می‌تونی از
+                  <code dir="ltr">{key}</code> <code dir="ltr">{city}</code>
+                  <code dir="ltr">{lat}</code> <code dir="ltr">{lon}</code>
+                  استفاده کنی.
+                </li>
+                <li>
+                  فرمت‌های پشتیبانی‌شده‌ی آب‌وهوا: OpenWeatherMap، WeatherAPI و
+                  Open-Meteo.
+                </li>
+                <li>
+                  فرمت‌های پشتیبانی‌شده‌ی قیمت: tgju، BrsApi، یا لیست ساده‌ای از
+                  آیتم‌ها با فیلدهای
+                  <code dir="ltr">title</code> <code dir="ltr">price</code>
+                  <code dir="ltr">change</code> <code dir="ltr">group</code>.
+                </li>
+                <li>اگه API اختصاصی جواب نده، خودکار از منبع رایگان خونده می‌شه.</li>
+              </ul>
+              <div class="settings-actions">
+                <button class="btn-primary" id="btn-save-datasources" type="button">
+                  <i class="fa-solid fa-floppy-disk"></i> ذخیره و بروزرسانی
+                </button>
+                <button class="btn-secondary" id="btn-reset-datasources" type="button">
+                  بازگشت به رایگان
+                </button>
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <h3>پشتیبان‌گیری</h3>
+              <p class="settings-desc">
+                تمام داده‌ها (شامل عکس‌های تقویم) رو اکسپورت کن یا از فایل
+                بارگذاری کن — همین فایل رو روی مرورگر/سیستم دیگه هم می‌تونی
+                ایمپورت کنی.
+              </p>
+              <div class="settings-actions">
+                <button class="btn-primary" id="settings-export">
+                  <i class="fa-solid fa-download"></i> اکسپورت داده
+                </button>
+                <label class="btn-secondary" style="cursor: pointer">
+                  <i class="fa-solid fa-upload"></i> ایمپورت داده
+                  <input
+                    type="file"
+                    id="settings-import"
+                    accept=".json"
+                    style="display: none"
+                  />
+                </label>
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <h3><i class="fa-solid fa-clock-rotate-left"></i> بکاپ خودکار</h3>
+              <label class="toggle-row">
+                <span>هر بار که برنامه رو باز می‌کنم، بکاپ خودکار بگیر</span>
+                <input
+                  type="checkbox"
+                  id="setAutoBackupEnabled"
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+              <div class="form-group" id="autoBackupIntervalBox">
+                <label>فاصله‌ی زمانی</label>
+                <select id="autoBackupInterval">
+                  <option value="1">هر روز</option>
+                  <option value="7" selected>هر هفته</option>
+                  <option value="30">هر ماه</option>
+                </select>
+              </div>
+              <p class="settings-desc small">
+                آخرین بکاپ: <span id="lastBackupText">هنوز گرفته نشده</span>.
+                چون این برنامه سرور نداره، بکاپ خودکار فقط وقتی امکان‌پذیره
+                که برنامه رو باز کنی؛ بعضی مرورگرها هم ممکنه برای دانلود
+                خودکار اجازه بخوان.
+              </p>
+              <button class="btn-secondary" id="btn-backup-now">
+                دانلود بکاپ همین الان
+              </button>
+            </div>
+
+            <div class="settings-card dev-about-card">
+              <h3>درباره‌ی سازنده</h3>
+              <p class="settings-desc dev-app-desc">
+                یه دستیار شخصیِ کاملاً آفلاینه — بدون سرور، بدون اینترنت،
+                همه‌چیز فقط روی همین دستگاه. برنامه‌ریزی روزانه، سلامت،
+                ورزش، تغذیه، دارو، مالی، خانواده، تفریح، و یه دفتر
+                خاطرات شخصی و قفل‌شده، همه توی یه‌جا.
+              </p>
+              <button class="btn-secondary" id="btn-open-dev-card">
+                <i class="fa-solid fa-code"></i> سازنده
+              </button>
+            </div>
+
+            <div class="cal-dev-overlay hidden" id="cal-dev-overlay">
+              <div class="cal-dev-card">
+                <button class="cal-dev-close" id="cal-dev-close">✕</button>
+                <img
+                  class="cal-dev-avatar"
+                  src="https://github.com/slowwitted.png"
+                  loading="lazy"
+                  decoding="async"
+                  alt="SlowWitted"
+                  onerror="this.style.display='none'"
+                />
+                <h3 class="cal-dev-name">جاهد کبیری</h3>
+                <p class="cal-dev-role">توسعه‌دهنده ابزارها و فرایندها</p>
+                <div class="cal-dev-links">
+                  <a href="https://github.com/slowwitted" target="_blank">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"
+                      />
+                    </svg>
+                  </a>
+                  <a href="https://t.me/jahedkabiri" target="_blank">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6.54l-1.37 6.47c-.1.46-.37.58-.75.36l-2.07-1.53-1 .96c-.11.11-.2.2-.42.2l.15-2.13 3.87-3.5c.17-.15-.04-.23-.26-.09l-4.79 3.01-2.06-.64c-.45-.14-.46-.45.09-.67l8.04-3.1c.38-.14.7.09.58.66z"
+                      />
+                    </svg>
+                  </a>
+                  <a href="mailto:jahed.kabiri@gmail.com">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <rect x="2" y="4" width="20" height="16" rx="2" />
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                  </a>
+                </div>
+                <p class="cal-dev-desc">
+                  این میدبرت روزمرگی با ❤️ طراحی و توسعه داده شده است.
+                </p>
+              </div>
+            </div>
+
+            <div class="settings-card danger-zone">
+              <h3>منطقه خطر</h3>
+              <p class="settings-desc">این عملیات برگشت‌پذیر نیست.</p>
+              <button class="btn-danger" id="btn-clear-all">
+                <i class="fa-solid fa-trash"></i> پاک‌کردن همه داده‌ها
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- /comp-settings -->
+      </main>
+      <!-- /content-area -->
+    </div>
+    <!-- /main-wrapper -->
+
+    <!-- ═══════════════════════════════════════════
+     مودال بازخورد/گزارش برای یک ردیف از «رویدادها»
+═══════════════════════════════════════════ -->
+    <div class="modal-overlay hidden" id="modalFeedback">
+      <div class="modal-box" style="max-width: 420px">
+        <div class="modal-header">
+          <h3 id="modalFeedbackTitle">گزارش / بازخورد</h3>
+          <button class="modal-close" id="modalFeedbackClose">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>چی شد؟ چه اتفاقی افتاد؟</label>
+            <textarea
+              id="feedbackText"
+              rows="4"
+              placeholder="مثلاً: رفتم باشگاه، تمرین سنگین بود ولی خوب گذشت..."
+            ></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" id="modalFeedbackCancel">
+            انصراف
+          </button>
+          <button class="btn-primary" id="modalFeedbackSave">ذخیره</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     مودال تنظیم/تغییر رمز عبور (از دراپ‌داون پروفایل)
+═══════════════════════════════════════════ -->
+    <div class="modal-overlay hidden" id="modalPassword">
+      <div class="modal-box" style="max-width: 360px">
+        <div class="modal-header">
+          <h3 id="modalPasswordTitle">تنظیم رمز عبور</h3>
+          <button class="modal-close" id="modalPasswordClose">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group" id="pwCurrentGroup" style="display: none">
+            <label>رمز فعلی</label>
+            <input
+              type="password"
+              inputmode="numeric"
+              maxlength="6"
+              id="pwCurrent"
+            />
+          </div>
+          <div class="form-group">
+            <label>رمز جدید (۴ تا ۶ رقم)</label>
+            <input
+              type="password"
+              inputmode="numeric"
+              maxlength="6"
+              id="pwNew1"
+            />
+          </div>
+          <div class="form-group">
+            <label>تکرار رمز جدید</label>
+            <input
+              type="password"
+              inputmode="numeric"
+              maxlength="6"
+              id="pwNew2"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" id="modalPasswordCancel">
+            انصراف
+          </button>
+          <button class="btn-primary" id="modalPasswordSave">ذخیره</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     صفحه‌ی راه‌اندازی اولیه (فقط بار اول)
+═══════════════════════════════════════════ -->
+    <div class="onboarding-overlay hidden" id="onboardingOverlay">
+      <div class="onboarding-box">
+        <div class="onboarding-logo"><i class="fa-solid fa-calendar-check"></i></div>
+        <h2>به زندگی‌یار خوش اومدی 👋</h2>
+        <p class="onboarding-sub">
+          چند قدم کوچیک تا شخصی‌سازی کامل برنامه؛ همه‌چیز فقط روی همین
+          دستگاه ذخیره می‌شه.
+        </p>
+
+        <div class="onboarding-avatar-row">
+          <img
+            id="obAvatarPreview"
+            src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='%23a78bfa'/%3E%3C/svg%3E"
+            alt="پروفایل"
+          />
+          <label class="btn-secondary btn-upload-label">
+            <i class="fa-solid fa-camera"></i> انتخاب عکس (اختیاری)
+            <input
+              type="file"
+              id="obAvatarInput"
+              accept="image/*"
+              style="display: none"
+            />
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>اسمت چیه؟</label>
+          <input type="text" id="obName" placeholder="مثلاً: سارا" />
+        </div>
+
+        <div class="form-group">
+          <label>توی چه شهری زندگی می‌کنی؟</label>
+          <input type="text" id="obCity" placeholder="مثلاً: تهران" autocomplete="off" />
+          <span class="onboarding-hint"
+            >برای نشون‌دادن آب‌وهوای شهرت توی صفحه‌ی خانه؛ اختیاریه و بعداً از
+            تنظیمات قابل تغییره.</span
+          >
+        </div>
+
+        <div class="form-group">
+          <label>شغل یا سبک زندگیت چیه؟</label>
+          <select id="obJob">
+            <option value="employee">👔 کارمند</option>
+            <option value="student">🎓 دانشجو</option>
+            <option value="pupil">🏫 محصل</option>
+            <option value="freelancer">💻 فریلنسر</option>
+            <option value="homemaker">🏠 خانه‌دار</option>
+            <option value="athlete">🏋️ ورزشکار / مربی</option>
+            <option value="teacher">🎓 استاد / معلم</option>
+            <option value="doctor">🩺 پزشک</option>
+            <option value="psychologist">🧠 روان‌شناس</option>
+            <option value="salesperson">🛍️ فروشنده</option>
+            <option value="manager">🧑‍💼 مدیر</option>
+            <option value="merchant">🧾 بازاری / بازرگان</option>
+            <option value="lawyer">⚖️ وکیل</option>
+            <option value="judge">👨‍⚖️ قاضی</option>
+            <option value="engineer">🛠️ مهندس</option>
+            <option value="technician">🔧 فنی‌کار</option>
+            <option value="driver">🚗 راننده</option>
+            <option value="retired">🌿 بازنشسته</option>
+            <option value="other">✨ سایر</option>
+          </select>
+          <span class="onboarding-hint"
+            >بر اساس این، چند دسته‌ی پیش‌فرض برات می‌سازیم؛ بعداً هم می‌تونی
+            از تنظیمات عوضشون کنی.</span
+          >
+        </div>
+
+        <button class="btn-primary onboarding-submit" id="btn-onboarding-save">
+          بزن بریم 🚀
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     صفحه‌ی قفل
+═══════════════════════════════════════════ -->
+    <div class="lock-screen hidden" id="lockScreen">
+      <div class="lock-box">
+        <div class="lock-icon"><i class="fa-solid fa-lock"></i></div>
+        <h2 id="lockGreeting">قفله</h2>
+        <p>برای ادامه، رمزت رو وارد کن</p>
+        <input
+          type="password"
+          inputmode="numeric"
+          maxlength="6"
+          id="lockPinInput"
+          class="lock-pin-input"
+          placeholder="••••"
+        />
+        <div class="lock-error" id="lockError"></div>
+        <button class="btn-primary" id="btn-unlock" style="width: 100%">
+          باز کردن قفل
+        </button>
+        <button class="lock-forgot" id="btn-forgot-pin">
+          رمز رو فراموش کردم
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     هشدارهای پایدار یادآوری — تا کلیک نکنی بسته نمی‌شن
+═══════════════════════════════════════════ -->
+    <div class="sticky-alerts" id="stickyAlerts"></div>
+
+    <!-- ═══════════════════════════════════════════
+     TOAST اعلان‌ها
+═══════════════════════════════════════════ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- بزرگ‌نمایی عکس پروفایل (نگه‌داشتن ماوس/انگشت روی آواتار به مدت ۳ ثانیه) -->
+    <div class="avatar-zoom-overlay hidden" id="avatarZoomOverlay">
+      <div class="avatar-zoom-box">
+        <img id="avatarZoomImg" alt="عکس پروفایل" />
+      </div>
+    </div>
+
+    <!-- لایت‌باکس گالری تصاویر -->
+    <div class="lightbox-overlay hidden" id="galLightbox">
+      <button class="lightbox-close" id="galLbClose" type="button" title="بستن" aria-label="بستن">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <button class="lightbox-nav lightbox-prev" id="galLbPrev" type="button" title="قبلی" aria-label="عکس قبلی">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+      <div class="lightbox-stage">
+        <img id="galLbImg" alt="" />
+        <div class="lightbox-caption">
+          <span id="galLbName"></span>
+          <span class="lightbox-badge" id="galLbBadge"></span>
+        </div>
+      </div>
+      <button class="lightbox-nav lightbox-next" id="galLbNext" type="button" title="بعدی" aria-label="عکس بعدی">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <div class="lightbox-actions">
+        <button class="btn-secondary" id="galLbSave" type="button">
+          <i class="fa-solid fa-floppy-disk"></i> ذخیره در گالری
+        </button>
+        <button class="btn-danger" id="galLbDelete" type="button">
+          <i class="fa-solid fa-trash-can"></i> حذف
+        </button>
+      </div>
+    </div>
+
+    <!-- نمایشگر سند -->
+    <div class="doc-viewer-overlay hidden" id="docViewer">
+      <div class="doc-viewer-box">
+        <div class="doc-viewer-head">
+          <div class="doc-viewer-title">
+            <i class="fa-solid fa-file" id="docViewerIcon"></i>
+            <span id="docViewerName"></span>
+          </div>
+          <div class="doc-viewer-tools">
+            <a class="btn-secondary" id="docViewerOpenExternal" download title="دانلود برای باز کردن در برنامه‌ی دیگه">
+              <i class="fa-solid fa-up-right-from-square"></i> باز کردن در برنامه‌ی ویرایشگر
+            </a>
+            <button class="modal-close" id="docViewerClose" type="button" aria-label="بستن">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
+        <div class="doc-viewer-body" id="docViewerBody"></div>
+      </div>
+    </div>
+
+    <!-- ─── اسکریپت‌ها ─── -->
+    <script src="js/all.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>
